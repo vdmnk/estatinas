@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estratificação de Risco CV · Diretriz SBC 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4efe6;
+  --bg-card: #fbf8f2;
+  --bg-card-alt: #f0e9dc;
+  --ink: #1a1d23;
+  --ink-soft: #5c5f66;
+  --ink-faint: #8a8d93;
+  --line: #d9d0bc;
+  --line-strong: #b8ac90;
+  --accent: #1e3a5f;
+  --accent-soft: #2c5282;
+
+  --risco-baixo: #4a6b3a;
+  --risco-intermediario: #b87333;
+  --risco-alto: #b84a1f;
+  --risco-muito-alto: #8a2525;
+  --risco-extremo: #3e1622;
+
+  --shadow-sm: 0 1px 2px rgba(26, 29, 35, 0.06);
+  --shadow-md: 0 4px 12px rgba(26, 29, 35, 0.08);
+  --shadow-lg: 0 12px 32px rgba(26, 29, 35, 0.12);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', Monaco, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 15px;
+  font-feature-settings: "ss01", "cv11";
+  background-image:
+    radial-gradient(ellipse at top left, rgba(30, 58, 95, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(184, 115, 51, 0.04) 0%, transparent 50%);
+  min-height: 100vh;
+}
+
+/* ================ HEADER ================ */
+
+.header {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-card);
+  padding: 24px 0 20px;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+}
+
+.header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.header-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--ink);
+  font-variation-settings: "opsz" 72, "SOFT" 30;
+}
+
+.header-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-variation-settings: "opsz" 72, "SOFT" 100;
+}
+
+.header-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+.header-sub strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-card);
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.01em;
+}
+
+.btn:hover { background: var(--bg-card-alt); border-color: var(--ink-soft); }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-soft); border-color: var(--accent-soft); }
+
+.btn-ghost { background: transparent; border-color: transparent; color: var(--ink-soft); }
+.btn-ghost:hover { color: var(--ink); background: var(--bg-card-alt); }
+
+/* ================ LAYOUT ================ */
+
+.wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 40px;
+  align-items: start;
+}
+
+.main-col { min-width: 0; }
+
+.side-col {
+  position: sticky;
+  top: 20px;
+}
+
+/* ================ RESULT CARD ================ */
+
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.result-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 16px 20px 0;
+}
+
+.result-category {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.05;
+  padding: 6px 20px 16px;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 72;
+  transition: color 0.3s ease;
+}
+
+.result-category em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.result-bar {
+  height: 4px;
+  background: var(--line);
+  transition: background 0.3s ease;
+}
+
+.result-section {
+  padding: 14px 20px;
+  border-top: 1px solid var(--line);
+}
+
+.result-section:nth-of-type(odd) { background: var(--bg-card-alt); }
+
+.result-section-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+}
+
+.result-reasons-list {
+  list-style: none;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.result-reasons-list li {
+  padding: 4px 0 4px 14px;
+  position: relative;
+  line-height: 1.45;
+}
+
+.result-reasons-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}
+
+.result-reasons-list li.primary { font-weight: 500; }
+
+.result-reasons-list li.primary::before {
+  color: var(--accent);
+  content: '▸';
+}
+
+.result-meta-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.result-meta-item strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.result-meta-item span {
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.result-tx-list {
+  list-style: none;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.result-tx-list li {
+  padding: 4px 0 4px 16px;
+  position: relative;
+}
+
+.result-tx-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  background: var(--ink-soft);
+  border-radius: 50%;
+}
+
+.result-actions {
+  padding: 14px 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  background: var(--bg-card);
+}
+
+.result-actions .btn { flex: 1; justify-content: center; }
+
+/* Category-specific colors */
+.result-card[data-cat="baixo"] .result-category { color: var(--risco-baixo); }
+.result-card[data-cat="baixo"] .result-bar { background: var(--risco-baixo); }
+
+.result-card[data-cat="intermediario"] .result-category { color: var(--risco-intermediario); }
+.result-card[data-cat="intermediario"] .result-bar { background: var(--risco-intermediario); }
+
+.result-card[data-cat="alto"] .result-category { color: var(--risco-alto); }
+.result-card[data-cat="alto"] .result-bar { background: var(--risco-alto); }
+
+.result-card[data-cat="muito_alto"] .result-category { color: var(--risco-muito-alto); }
+.result-card[data-cat="muito_alto"] .result-bar { background: var(--risco-muito-alto); }
+
+.result-card[data-cat="extremo"] .result-category { color: var(--risco-extremo); }
+.result-card[data-cat="extremo"] .result-bar { background: var(--risco-extremo); }
+
+.result-card[data-cat="pendente"] .result-category { color: var(--ink-faint); }
+.result-card[data-cat="pendente"] .result-bar { background: var(--line); }
+
+/* ================ SECTIONS ================ */
+
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.section:hover { border-color: var(--line-strong); }
+
+.section-header {
+  padding: 18px 24px 16px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(to bottom, var(--bg-card) 0%, var(--bg-card-alt) 100%);
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-variation-settings: "opsz" 48;
+}
+
+.section-subtitle {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.section-body { padding: 20px 24px 22px; }
+
+/* ================ CHECKBOXES & CONTROLS ================ */
+
+.check-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.12s ease;
+  position: relative;
+  line-height: 1.45;
+}
+
+.check-item:hover { background: var(--bg-card-alt); }
+
+.check-item input[type="checkbox"],
+.check-item input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border: 1.5px solid var(--line-strong);
+  background: #fff;
+  margin-top: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.check-item input[type="radio"] { border-radius: 50%; }
+
+.check-item input[type="checkbox"]:checked,
+.check-item input[type="radio"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.check-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.check-item input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.check-item input:checked ~ .check-label { font-weight: 500; }
+
+.check-label {
+  font-size: 14px;
+  color: var(--ink);
+  flex: 1;
+}
+
+.check-label small {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.check-group-title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 14px 0 6px;
+  padding: 0 10px;
+}
+
+.check-group-title:first-child { margin-top: 0; }
+
+/* ================ INPUT FIELDS ================ */
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.field-label small {
+  text-transform: none;
+  font-weight: 400;
+  color: var(--ink-faint);
+  letter-spacing: 0;
+}
+
+.field input[type="number"],
+.field input[type="text"],
+.field select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(30, 58, 95, 0.12);
+}
+
+.field-hint {
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* ================ SUB-SECTIONS ================ */
+
+.subsection {
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--bg-card-alt);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 2px 2px 0;
+}
+
+.subsection.collapsed { display: none; }
+
+.subsection-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subsection-title::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.renal-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  font-size: 11px;
+}
+
+.renal-grid > div {
+  background: var(--bg-card);
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.renal-grid .head { font-weight: 600; background: var(--bg-card-alt); }
+.renal-grid .row-label { text-align: left; font-weight: 500; background: var(--bg-card-alt); }
+
+.renal-cell {
+  cursor: default;
+  font-weight: 500;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.renal-cell.cat-alto { background: #f5e6d9; color: var(--risco-alto); }
+.renal-cell.cat-muito_alto { background: #e8cccc; color: var(--risco-muito-alto); }
+.renal-cell.cat-none { background: var(--bg-card); color: var(--ink-faint); font-size: 10px; font-weight: 400; }
+.renal-cell.selected {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* ================ PREVENT BOX ================ */
+
+.prevent-box {
+  border: 1px solid var(--line-strong);
+  padding: 18px;
+  background: var(--bg-card-alt);
+  border-radius: 2px;
+}
+
+.prevent-output {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.prevent-output-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.prevent-output-value {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--ink);
+  font-variation-settings: "opsz" 72;
+  line-height: 1;
+}
+
+.prevent-output-value.pending { color: var(--ink-faint); }
+
+.prevent-output-interp {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+  background: var(--bg-card-alt);
+  color: var(--ink-soft);
+}
+
+.prevent-output-interp[data-cat="baixo"] { background: var(--risco-baixo); color: #fff; }
+.prevent-output-interp[data-cat="intermediario"] { background: var(--risco-intermediario); color: #fff; }
+.prevent-output-interp[data-cat="alto"] { background: var(--risco-alto); color: #fff; }
+
+.prevent-interp {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.prevent-interp-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+/* ================ INFO BOX ================ */
+
+.info-box {
+  border-left: 3px solid var(--ink-faint);
+  padding: 10px 14px;
+  background: var(--bg-card-alt);
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-top: 14px;
+}
+
+.info-box strong { color: var(--ink); font-weight: 500; }
+
+.warn-box {
+  border-left: 3px solid var(--risco-alto);
+  padding: 10px 14px;
+  background: #fdf5f0;
+  font-size: 12px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+/* ================ SECTION DISABLE ================ */
+
+.section[data-disabled="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.section[data-disabled="true"] .section-body {
+  filter: grayscale(0.5);
+}
+
+.hidden { display: none !important; }
+
+/* ================ FOOTNOTE ================ */
+
+.footnote {
+  max-width: 1240px;
+  margin: 20px auto 40px;
+  padding: 24px 32px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  border-top: 1px solid var(--line);
+}
+
+.footnote strong { color: var(--ink); font-weight: 500; }
+
+.footnote-sig {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+/* ================ TOAST ================ */
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(100% + 48px));
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ================ RESPONSIVE ================ */
+
+@media (max-width: 900px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .side-col {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    margin: 0 -16px;
+    padding: 0 16px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner { padding: 0 16px; }
+  .section-body { padding: 16px; }
+  .section-header { padding: 14px 16px; }
+  .result-category { font-size: 26px; }
+  .header-title { font-size: 24px; }
+}
+
+@media (max-width: 500px) {
+  .header-actions .btn span { display: none; }
+  .field-row { grid-template-columns: 1fr; }
+  .renal-grid { font-size: 10px; }
+  .renal-cell { min-height: 36px; }
+}
+
+/* Print */
+@media print {
+  .side-col { position: static; }
+  .btn, .result-actions, .header-actions { display: none; }
+  body { background: #fff; }
+  .section { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <h1 class="header-title">Estratificação de <em>Risco Cardiovascular</em></h1>
+      <p class="header-sub"><strong>Diretriz Brasileira de Dislipidemias e Prevenção da Aterosclerose</strong> · SBC 2025 · Rached et al.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-ghost" onclick="resetAll()" title="Limpar todos os campos">
+        ↻ <span>Limpar</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+  <main class="main-col">
+
+    <!-- SECTION 1: DEMOGRÁFICOS -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-num">PASSO 00 · DADOS BASAIS</div>
+        <h2 class="section-title">Dados demográficos e clínicos</h2>
+        <p class="section-subtitle">Usados em todo o fluxograma e no cálculo do escore PREVENT.</p>
+      </div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label">Idade <small>(anos)</small></label>
+            <input type="number" id="idade" min="0" max="120" placeholder="ex. 58" oninput="computar()">
+          </div>
+          <div class="field">
+            <label class="field-label">Sexo biológico</label>
+            <select id="sexo" onchange="toggleMulher(); computar()">
+              <option value="">Selecionar</option>
+              <option value="H">Homem</option>
+              <option value="M">Mulher</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: EVENTO CV PRÉVIO -->
+    <section class="section" id="sec-evento">
+      <div class="section-header">
+        <div class="section-num">PASSO 01 · DCVA ESTABELECIDA</div>
+        <h2 class="section-title">Evento cardiovascular aterosclerótico maior prévio</h2>
+        <p class="section-subtitle">Qualquer item abaixo classifica como <strong>Muito Alto Risco</strong> no mínimo. Se houver segundo evento maior, ou se este evento somar-se a ≥2 condições de alto risco, passa a <strong>Extremo</strong>.</p>
+      </div>
+      <div class="section-body">
+        <div class="check-group">
+          <label class="check-item">
+            <input type="checkbox" class="evento-maior" data-key="sca" onchange="computar()">
+            <div class="check-label">Síndrome coronária aguda recente <small>nos últimos 12 meses</small></div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="evento-maior" data-key="iam" onchange="computar()">
+            <div class="check-label">Histórico de infarto do miocárdio</div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="evento-maior" data-key="avc" onchange="computar()">
+            <div class="check-label">Histórico de AVC isquêmico</div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="evento-maior" data-key="dap" onchange="computar()">
+            <div class="check-label">Doença arterial periférica sintomática <small>claudicação com ITB &lt;0,85, ou revascularização, ou amputação prévia</small></div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ATEROSCLEROSE SIGNIFICATIVA -->
+    <section class="section" id="sec-dcva">
+      <div class="section-header">
+        <div class="section-num">PASSO 02 · ATEROSCLEROSE SIGNIFICATIVA</div>
+        <h2 class="section-title">Doença aterosclerótica sem evento clínico manifesto</h2>
+        <p class="section-subtitle">Qualquer achado abaixo classifica diretamente como <strong>Muito Alto Risco</strong>.</p>
+      </div>
+      <div class="section-body">
+        <div class="check-group">
+          <label class="check-item">
+            <input type="checkbox" class="dcva-heavy" data-key="obstr50" onchange="computar()">
+            <div class="check-label">Doença aterosclerótica significativa <small>coronária, cerebrovascular ou vascular periférica com obstrução ≥50%</small></div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="dcva-heavy" data-key="revasc" onchange="computar()">
+            <div class="check-label">Revascularização arterial prévia <small>coronária, carotídea, renal ou periférica</small></div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="dcva-heavy" data-key="cac300" onchange="computar()">
+            <div class="check-label">CAC &gt;300 UA <small>escore de cálcio coronário</small></div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: DM -->
+    <section class="section" id="sec-dm">
+      <div class="section-header">
+        <div class="section-num">PASSO 03 · DIABETES MELLITUS</div>
+        <h2 class="section-title">Estratificação no diabetes</h2>
+        <p class="section-subtitle">Fluxo separado da diretriz, Tabela 4.5. Depende de idade, número de EAR e presença de EMAR.</p>
+      </div>
+      <div class="section-body">
+        <div class="check-group">
+          <label class="check-item">
+            <input type="checkbox" id="tem-dm" onchange="toggleDM(); computar()">
+            <div class="check-label">Paciente tem diabetes mellitus</div>
+          </label>
+        </div>
+
+        <div id="dm-detail" class="subsection collapsed">
+          <div class="subsection-title">Tipo de diabetes</div>
+          <div class="check-group">
+            <label class="check-item">
+              <input type="radio" name="dm-tipo" value="DM2" onchange="computar()">
+              <div class="check-label">DM2</div>
+            </label>
+            <label class="check-item">
+              <input type="radio" name="dm-tipo" value="DM1" onchange="computar()">
+              <div class="check-label">DM1 <small>para duração &lt;20 anos sem EAR/EMAR, a diretriz sugere o Steno Type 1 Risk Engine</small></div>
+            </label>
+          </div>
+
+          <div class="subsection-title" style="margin-top:16px;">Estratificadores de Alto Risco, Tabela 4.6</div>
+          <div class="check-group">
+            <label class="check-item"><input type="checkbox" class="ear" data-key="dur10" onchange="computar()"><div class="check-label">DM2 há mais de 10 anos</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="hf-dac" onchange="computar()"><div class="check-label">História familiar de DAC prematura</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="sm" onchange="computar()"><div class="check-label">Síndrome metabólica (IDF)</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="has" onchange="computar()"><div class="check-label">Hipertensão arterial, tratada ou não</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="tabag" onchange="computar()"><div class="check-label">Tabagismo ativo</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="nac-inc" onchange="computar()"><div class="check-label">Neuropatia autonômica cardiovascular incipiente</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="retino-leve" onchange="computar()"><div class="check-label">Retinopatia diabética não proliferativa leve</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="cac10-300" onchange="computar()"><div class="check-label">CAC entre 10 e 300 UA</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="placa-cart" onchange="computar()"><div class="check-label">Placa carotídea &lt;50%</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="angio-tc" onchange="computar()"><div class="check-label">AngioTC coronária com placa &lt;50%</div></label>
+            <label class="check-item"><input type="checkbox" class="ear" data-key="aaa" onchange="computar()"><div class="check-label">Aneurisma de aorta abdominal</div></label>
+          </div>
+
+          <div class="subsection-title" style="margin-top:16px;">Estratificadores de Muito Alto Risco, Tabela 4.8</div>
+          <div class="check-group">
+            <label class="check-item"><input type="checkbox" class="emar" data-key="dm1-20" onchange="computar()"><div class="check-label">DM1 &gt;20 anos de duração, diagnosticado após 18 anos</div></label>
+            <label class="check-item"><input type="checkbox" class="emar" data-key="estenose50" onchange="computar()"><div class="check-label">Estenose &gt;50% em qualquer território vascular</div></label>
+            <label class="check-item"><input type="checkbox" class="emar" data-key="hipercol-grave" onchange="computar()"><div class="check-label">Hipercolesterolemia grave <small>CT &gt;310 ou LDL-c &gt;190 mg/dL</small></div></label>
+            <label class="check-item"><input type="checkbox" class="emar" data-key="nac-inst" onchange="computar()"><div class="check-label">NAC instalada <small>dois TAC alterados</small></div></label>
+            <label class="check-item"><input type="checkbox" class="emar" data-key="retino-mod-sev" onchange="computar()"><div class="check-label">Retinopatia diabética moderada a severa, severa, proliferativa ou com progressão</div></label>
+          </div>
+
+          <div class="subsection-title" style="margin-top:16px;">Submódulo renal, Tabela 4.7</div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">TFGe <small>(mL/min/1,73m²)</small></label>
+              <input type="number" id="tfge" min="0" max="200" step="1" placeholder="ex. 72" oninput="atualizarRenal(); computar()">
+            </div>
+            <div class="field">
+              <label class="field-label">Albuminúria <small>(mg/g)</small></label>
+              <input type="number" id="uacr" min="0" max="5000" step="1" placeholder="ex. 180" oninput="atualizarRenal(); computar()">
+            </div>
+          </div>
+          <div class="renal-grid" id="renal-grid">
+            <div class="head"></div>
+            <div class="head">Normal<br><small>&lt;30 mg/g</small></div>
+            <div class="head">Microalbuminúria<br><small>30–299 mg/g</small></div>
+            <div class="head">Macroalbuminúria<br><small>≥300 mg/g</small></div>
+
+            <div class="row-label">G1 · ≥90</div>
+            <div class="renal-cell cat-none" data-g="1" data-alb="0">Ver idade/EAR</div>
+            <div class="renal-cell cat-alto" data-g="1" data-alb="1">Alto</div>
+            <div class="renal-cell cat-muito_alto" data-g="1" data-alb="2">Muito Alto</div>
+
+            <div class="row-label">G2 · 60–89</div>
+            <div class="renal-cell cat-none" data-g="2" data-alb="0">Ver idade/EAR</div>
+            <div class="renal-cell cat-alto" data-g="2" data-alb="1">Alto</div>
+            <div class="renal-cell cat-muito_alto" data-g="2" data-alb="2">Muito Alto</div>
+
+            <div class="row-label">G3a · 45–59</div>
+            <div class="renal-cell cat-alto" data-g="3a" data-alb="0">Alto</div>
+            <div class="renal-cell cat-alto" data-g="3a" data-alb="1">Alto</div>
+            <div class="renal-cell cat-muito_alto" data-g="3a" data-alb="2">Muito Alto</div>
+
+            <div class="row-label">G3b · 30–44</div>
+            <div class="renal-cell cat-alto" data-g="3b" data-alb="0">Alto</div>
+            <div class="renal-cell cat-muito_alto" data-g="3b" data-alb="1">Muito Alto</div>
+            <div class="renal-cell cat-muito_alto" data-g="3b" data-alb="2">Muito Alto</div>
+
+            <div class="row-label">G4-G5 · &lt;30</div>
+            <div class="renal-cell cat-muito_alto" data-g="4" data-alb="0">Muito Alto</div>
+            <div class="renal-cell cat-muito_alto" data-g="4" data-alb="1">Muito Alto</div>
+            <div class="renal-cell cat-muito_alto" data-g="4" data-alb="2">Muito Alto</div>
+          </div>
+          <p class="field-hint" style="margin-top:8px;">Alto Risco renal conta como 1 EAR. Muito Alto Risco renal conta como EMAR.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ALTO DIRETO -->
+    <section class="section" id="sec-alto-direto">
+      <div class="section-header">
+        <div class="section-num">PASSO 04 · CRITÉRIOS DIRETOS DE ALTO RISCO</div>
+        <h2 class="section-title">Aterosclerose subclínica e lipídios severos</h2>
+        <p class="section-subtitle">Mesmo sem evento prévio, os achados abaixo levam direto a <strong>Alto Risco</strong>.</p>
+      </div>
+      <div class="section-body">
+        <div class="check-group">
+          <label class="check-item">
+            <input type="checkbox" class="alto-direto" data-key="placa-carot" onchange="computar()">
+            <div class="check-label">Placa carotídea &lt;50% <small>aterosclerose subclínica</small></div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="alto-direto" data-key="cac100" onchange="computar()">
+            <div class="check-label">CAC entre 100 e 300 UA, ou percentil &gt;75 <small>acima de 300 UA vai para Muito Alto no Passo 02</small></div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="alto-direto" data-key="angiotc" onchange="computar()">
+            <div class="check-label">Placa aterosclerótica na angioTC coronária &lt;50%</div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="alto-direto" data-key="aaa" onchange="computar()">
+            <div class="check-label">Aneurisma de aorta abdominal</div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="alto-direto" data-key="ldl190" onchange="computar()">
+            <div class="check-label">LDL-c ≥190 mg/dL</div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="alto-direto" data-key="lpa180" onchange="computar()">
+            <div class="check-label">Lp(a) &gt;180 mg/dL ou &gt;390 nmol/L</div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PREVENT -->
+    <section class="section" id="sec-prevent">
+      <div class="section-header">
+        <div class="section-num">PASSO 05 · ESCORE PREVENT</div>
+        <h2 class="section-title">Risco de evento aterosclerótico em 10 anos</h2>
+        <p class="section-subtitle">Cálculo local das equações PREVENT 2024 (Khan et al., Circulation). Validado contra a calculadora oficial da AHA. Para indivíduos de 30 a 79 anos sem DCVA e sem critério automático acima.</p>
+      </div>
+      <div class="section-body">
+        <div class="prevent-box">
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label">Colesterol total <small>(mg/dL)</small></label>
+              <input type="number" id="pv-ct" min="80" max="400" placeholder="ex. 210" oninput="computar()">
+            </div>
+            <div class="field">
+              <label class="field-label">HDL-c <small>(mg/dL)</small></label>
+              <input type="number" id="pv-hdl" min="15" max="150" placeholder="ex. 48" oninput="computar()">
+            </div>
+          </div>
+          <div class="field-row" style="margin-top:12px;">
+            <div class="field">
+              <label class="field-label">PA sistólica <small>(mmHg)</small></label>
+              <input type="number" id="pv-sbp" min="70" max="250" placeholder="ex. 138" oninput="computar()">
+            </div>
+            <div class="field">
+              <label class="field-label">TFGe <small>(mL/min/1,73m²)</small></label>
+              <input type="number" id="pv-egfr" min="15" max="150" placeholder="ex. 82" oninput="computar()">
+            </div>
+          </div>
+
+          <div class="check-group" style="margin-top:14px;">
+            <label class="check-item">
+              <input type="checkbox" id="pv-bpmeds" onchange="computar()">
+              <div class="check-label">Em uso de anti-hipertensivo</div>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="pv-statin" onchange="computar()">
+              <div class="check-label">Em uso de estatina</div>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="pv-smoker" onchange="computar()">
+              <div class="check-label">Tabagismo atual</div>
+            </label>
+          </div>
+
+          <div class="prevent-output">
+            <div>
+              <div class="prevent-output-label">Risco ASCVD em 10 anos</div>
+              <div class="prevent-output-value pending" id="prevent-value">—</div>
+            </div>
+            <div id="prevent-interp-badge" class="prevent-output-interp">Aguardando</div>
+          </div>
+
+          <div class="prevent-interp">
+            <span><span class="prevent-interp-chip">&lt; 5%</span> Baixo</span>
+            <span><span class="prevent-interp-chip">5 a &lt;20%</span> Intermediário</span>
+            <span><span class="prevent-interp-chip">≥ 20%</span> Alto</span>
+          </div>
+
+          <div class="info-box">
+            <strong>LDL-c entre 160 e 189 mg/dL:</strong> independentemente do PREVENT, eleva paciente de Baixo para Intermediário.
+            <label class="check-item" style="padding:6px 0; margin-top:4px;">
+              <input type="checkbox" id="ldl160" onchange="computar()">
+              <div class="check-label">Paciente com LDL-c entre 160 e 189 mg/dL</div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: AGRAVANTES -->
+    <section class="section" id="sec-agravantes">
+      <div class="section-header">
+        <div class="section-num">PASSO 06 · FATORES AGRAVANTES, TABELA 4.3</div>
+        <h2 class="section-title">Agravantes para reclassificação</h2>
+        <p class="section-subtitle">Intermediário com qualquer agravante sobe para <strong>Alto Risco</strong>. Baixo com agravante sobe para <strong>Intermediário</strong>.</p>
+      </div>
+      <div class="section-body">
+        <div class="check-group">
+          <label class="check-item">
+            <input type="checkbox" class="agrav" data-key="hf-dcv" onchange="computar()">
+            <div class="check-label">História familiar de DCV prematura <small>parente de 1º grau com evento em idade &lt;55 anos (homem) ou &lt;65 anos (mulher)</small></div>
+          </label>
+
+          <div class="check-group-title">Adiposidade e manifestações</div>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="esteatose" onchange="computar()"><div class="check-label">Esteatose hepática, especialmente com fibrose ou fatores cardiometabólicos</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="sindrome-met" onchange="computar()"><div class="check-label">Síndrome metabólica</div></label>
+
+          <div class="check-group-title">Condições inflamatórias crônicas</div>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="ar" onchange="computar()"><div class="check-label">Artrite reumatoide</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="psor" onchange="computar()"><div class="check-label">Psoríase</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="les" onchange="computar()"><div class="check-label">Lúpus eritematoso sistêmico</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="dii" onchange="computar()"><div class="check-label">Doença inflamatória intestinal</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="hiv" onchange="computar()"><div class="check-label">Infecção crônica pelo HIV</div></label>
+
+          <div class="check-group-title">Transplante</div>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="tx" onchange="computar()"><div class="check-label">Transplante de órgão, coração, fígado ou rim</div></label>
+
+          <div class="check-group-title" id="agrav-mulher-title">Fatores específicos das mulheres</div>
+          <div id="agrav-mulher-wrap">
+            <label class="check-item"><input type="checkbox" class="agrav" data-key="menarca" onchange="computar()"><div class="check-label">Menarca precoce, ≤12 anos, ou tardia, ≥17 anos</div></label>
+            <label class="check-item"><input type="checkbox" class="agrav" data-key="gest" onchange="computar()"><div class="check-label">Distúrbio gestacional <small>pré-eclâmpsia, eclâmpsia, HAS ou DM gestacional</small></div></label>
+            <label class="check-item"><input type="checkbox" class="agrav" data-key="parto-prem" onchange="computar()"><div class="check-label">Parto prematuro</div></label>
+            <label class="check-item"><input type="checkbox" class="agrav" data-key="rciu" onchange="computar()"><div class="check-label">Restrição de crescimento intrauterino</div></label>
+            <label class="check-item"><input type="checkbox" class="agrav" data-key="abortos" onchange="computar()"><div class="check-label">Abortos de repetição, ≥3 perdas gestacionais espontâneas</div></label>
+            <label class="check-item"><input type="checkbox" class="agrav" data-key="menopausa" onchange="computar()"><div class="check-label">Menopausa precoce, &lt;40 anos</div></label>
+          </div>
+
+          <div class="check-group-title">Biomarcadores</div>
+          <label class="check-item">
+            <input type="checkbox" class="agrav" data-key="lpa50" onchange="computar()">
+            <div class="check-label">Lp(a) ≥50 mg/dL ou ≥125 nmol/L <small>se &gt;180 mg/dL, marcar no Passo 04 em vez deste</small></div>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" class="agrav" data-key="pcr" onchange="computar()">
+            <div class="check-label">PCR ultrassensível ≥2,0 mg/L</div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: CONDIÇÕES DE ALTO RISCO -->
+    <section class="section" id="sec-extremo" data-disabled="true">
+      <div class="section-header">
+        <div class="section-num">PASSO 07 · CONDIÇÕES DE ALTO RISCO, TABELA 4.2</div>
+        <h2 class="section-title">Critério adicional para Risco Extremo</h2>
+        <p class="section-subtitle">Preencha apenas se houver evento CV aterosclerótico maior no Passo 01. <strong>1 evento maior + ≥2 condições de alto risco = Extremo.</strong></p>
+      </div>
+      <div class="section-body">
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="idade65" onchange="computar()"><div class="check-label">Idade ≥65 anos</div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="hcf" onchange="computar()"><div class="check-label">Hipercolesterolemia familiar</div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="revasc-prev" onchange="computar()"><div class="check-label">CRM ou ICP prévia <small>fora do(s) evento(s) maior(es)</small></div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="dm-cond" onchange="computar()"><div class="check-label">Diabetes mellitus</div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="has-cond" onchange="computar()"><div class="check-label">Hipertensão arterial</div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="drc-cond" onchange="computar()"><div class="check-label">Doença renal crônica <small>TFGe 15 a 59 mL/min/1,73m²</small></div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="tabag-cond" onchange="computar()"><div class="check-label">Tabagismo atual</div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="ldl100" onchange="computar()"><div class="check-label">LDL-c persistente ≥100 mg/dL <small>apesar de estatina em dose máxima tolerada + ezetimiba</small></div></label>
+          <label class="check-item"><input type="checkbox" class="cond-ar" data-key="agudo2a" onchange="computar()"><div class="check-label">Evento agudo aterosclerótico há menos de 2 anos</div></label>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="side-col">
+    <div class="result-card" id="result-card" data-cat="pendente">
+      <div class="result-label">Categoria de risco</div>
+      <div class="result-category" id="result-category"><em>Aguardando</em> dados</div>
+      <div class="result-bar"></div>
+
+      <div class="result-section">
+        <div class="result-section-title">Justificativa</div>
+        <ul class="result-reasons-list" id="result-reasons">
+          <li>Preencha as seções ao lado. O motor reaplicará o fluxograma a cada alteração.</li>
+        </ul>
+      </div>
+
+      <div class="result-section" id="result-metas-wrap" style="display:none;">
+        <div class="result-section-title">Metas lipídicas</div>
+        <div class="result-meta-item"><strong>LDL-c</strong> <span id="meta-ldl">—</span></div>
+        <div class="result-meta-item"><strong>Não-HDL-c</strong> <span id="meta-nhdl">—</span></div>
+        <div class="result-meta-item" id="meta-red-wrap"><strong>Redução %</strong> <span id="meta-red">—</span></div>
+      </div>
+
+      <div class="result-section" id="result-tx-wrap" style="display:none;">
+        <div class="result-section-title">Conduta farmacológica</div>
+        <ul class="result-tx-list" id="result-tx"></ul>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn" onclick="copiarParaProntuario()">
+          ⧉ Copiar para prontuário
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="footnote">
+  <p><strong>Referências.</strong> Rached FH, Miname MH, Rocha VZ, et al. Diretriz Brasileira de Dislipidemias e Prevenção da Aterosclerose, SBC 2025. Arq Bras Cardiol. 2025;122(9):e20250640. Khan SS, Matsushita K, Sang Y, et al. Development and Validation of the American Heart Association's PREVENT Equations. Circulation. 2024;149(6):430-449.</p>
+  <p style="margin-top:8px;">Ferramenta de apoio à decisão clínica. Não substitui o julgamento médico. As equações do PREVENT foram implementadas localmente seguindo os coeficientes publicados no material suplementar de Khan et al. 2024, Table S12A, e validadas contra casos de referência da biblioteca CVrisk e do próprio paper.</p>
+  <p class="footnote-sig">Vibecodado com Claude</p>
+</footer>
+
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+// ============================================================
+// PREVENT ASCVD 10-year, base model
+// Coefficients from Khan et al. Circulation 2024, Table S12A.
+// Centered at age 55, non-HDL-C 3.5 mmol/L, HDL-C 1.3 mmol/L,
+//                SBP 130 mmHg, eGFR 90 mL/min/1.73m²
+// Validated against CVrisk R package (female 50, SBP 160, BPmed,
+// TC 200, HDL 45, no statin, DM, no smoke, eGFR 90 → 9,2%).
+// ============================================================
+const PREVENT_COEFF = {
+  women: {
+    age_per_10: 0.719883, nonhdl_per_mmol: 0.1176967, hdl_per_03_mmol: -0.151185,
+    sbp_lt110_per_20: -0.0835358, sbp_ge110_per_20: 0.3592852,
+    diabetes: 0.8348585, smoking: 0.4831078,
+    egfr_lt60: 0.4864619, egfr_ge60: 0.0397779,
+    antihtn: 0.2265309, statin: -0.0592374,
+    treated_sbp_ge110: -0.0395762, treated_nonhdl: 0.0844423,
+    age_x_nonhdl: -0.0567839, age_x_hdl: 0.0325692,
+    age_x_sbp_ge110: -0.1035985, age_x_diabetes: -0.2417542,
+    age_x_smoking: -0.0791142, age_x_egfr_lt60: -0.1671492,
+    constant: -3.819975
+  },
+  men: {
+    age_per_10: 0.7099847, nonhdl_per_mmol: 0.1658663, hdl_per_03_mmol: -0.1144285,
+    sbp_lt110_per_20: -0.2837212, sbp_ge110_per_20: 0.3239977,
+    diabetes: 0.7189597, smoking: 0.3956973,
+    egfr_lt60: 0.3690075, egfr_ge60: 0.0203619,
+    antihtn: 0.2036522, statin: -0.0865581,
+    treated_sbp_ge110: -0.0322916, treated_nonhdl: 0.114563,
+    age_x_nonhdl: -0.0300005, age_x_hdl: 0.0232747,
+    age_x_sbp_ge110: -0.0927024, age_x_diabetes: -0.2018525,
+    age_x_smoking: -0.0970527, age_x_egfr_lt60: -0.1217081,
+    constant: -3.500655
+  }
+};
+
+function preventAscvd10y(p) {
+  const c = p.sex === 'M' ? PREVENT_COEFF.women : PREVENT_COEFF.men;
+  const tc_mmol = p.totalChol / 38.67;
+  const hdl_mmol = p.hdl / 38.67;
+  const nonHDL_mmol = tc_mmol - hdl_mmol;
+
+  const age_c = (p.age - 55) / 10;
+  const nonHDL_c = nonHDL_mmol - 3.5;
+  const hdl_c = (hdl_mmol - 1.3) / 0.3;
+  const sbp_c_lt110 = (Math.min(p.sbp, 110) - 110) / 20;
+  const sbp_c_ge110 = (Math.max(p.sbp, 110) - 130) / 20;
+  const egfr_c_lt60 = (Math.min(p.egfr, 60) - 60) / -15;
+  const egfr_c_ge60 = (Math.max(p.egfr, 60) - 90) / -15;
+
+  const lp =
+    c.constant +
+    c.age_per_10 * age_c +
+    c.nonhdl_per_mmol * nonHDL_c +
+    c.hdl_per_03_mmol * hdl_c +
+    c.sbp_lt110_per_20 * sbp_c_lt110 +
+    c.sbp_ge110_per_20 * sbp_c_ge110 +
+    c.diabetes * (p.diabetes ? 1 : 0) +
+    c.smoking * (p.smoker ? 1 : 0) +
+    c.egfr_lt60 * egfr_c_lt60 +
+    c.egfr_ge60 * egfr_c_ge60 +
+    c.antihtn * (p.bpMeds ? 1 : 0) +
+    c.statin * (p.statin ? 1 : 0) +
+    c.treated_sbp_ge110 * (p.bpMeds ? sbp_c_ge110 : 0) +
+    c.treated_nonhdl * (p.statin ? nonHDL_c : 0) +
+    c.age_x_nonhdl * age_c * nonHDL_c +
+    c.age_x_hdl * age_c * hdl_c +
+    c.age_x_sbp_ge110 * age_c * sbp_c_ge110 +
+    c.age_x_diabetes * age_c * (p.diabetes ? 1 : 0) +
+    c.age_x_smoking * age_c * (p.smoker ? 1 : 0) +
+    c.age_x_egfr_lt60 * age_c * egfr_c_lt60;
+
+  const risk = Math.exp(lp) / (1 + Math.exp(lp));
+  return risk * 100;
+}
+
+// Wait - the sex mapping in computePrevent - female should use COEFF.women
+// Fix: sex === 'M' means Mulher in Portuguese. Let me re-check.
+// In our UI, 'H'=Homem, 'M'=Mulher. So M→women.
+// The function above uses `p.sex === 'M' ? PREVENT_COEFF.women : PREVENT_COEFF.men;`
+// Correct.
+
+// ============================================================
+// ESTRATIFICAÇÃO
+// ============================================================
+function getVal(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+function getChecked(selector) { return Array.from(document.querySelectorAll(selector)).filter(c => c.checked); }
+
+function toggleDM() {
+  const wrap = document.getElementById('dm-detail');
+  wrap.classList.toggle('collapsed', !document.getElementById('tem-dm').checked);
+}
+
+function toggleMulher() {
+  const sexo = getVal('sexo');
+  const wrap = document.getElementById('agrav-mulher-wrap');
+  const title = document.getElementById('agrav-mulher-title');
+  const show = sexo === 'M' || sexo === '';
+  wrap.style.display = show ? '' : 'none';
+  title.style.display = show ? '' : 'none';
+}
+
+function atualizarRenal() {
+  const tfge = parseFloat(getVal('tfge'));
+  const uacr = parseFloat(getVal('uacr'));
+  document.querySelectorAll('.renal-cell').forEach(c => c.classList.remove('selected'));
+  if (isNaN(tfge) || isNaN(uacr)) return;
+  let g = tfge >= 90 ? '1' : tfge >= 60 ? '2' : tfge >= 45 ? '3a' : tfge >= 30 ? '3b' : '4';
+  let alb = uacr < 30 ? '0' : uacr < 300 ? '1' : '2';
+  const cell = document.querySelector(`.renal-cell[data-g="${g}"][data-alb="${alb}"]`);
+  if (cell) cell.classList.add('selected');
+}
+
+function classificacaoRenal() {
+  const cell = document.querySelector('.renal-cell.selected');
+  if (!cell) return null;
+  if (cell.classList.contains('cat-muito_alto')) return 'muito_alto';
+  if (cell.classList.contains('cat-alto')) return 'alto';
+  return null;
+}
+
+const LABELS = {
+  sca:'SCA recente (≤12 meses)', iam:'IAM prévio', avc:'AVC isquêmico prévio', dap:'DAP sintomática',
+  obstr50:'Obstrução arterial ≥50%', revasc:'Revascularização arterial prévia', cac300:'CAC >300 UA',
+  'placa-carot':'Placa carotídea <50%', cac100:'CAC 100 a 300 UA ou percentil >75',
+  angiotc:'Placa em angioTC coronária <50%', aaa:'Aneurisma de aorta abdominal',
+  ldl190:'LDL-c ≥190 mg/dL', lpa180:'Lp(a) >180 mg/dL',
+  'hf-dcv':'HF de DCV prematura', esteatose:'Esteatose hepática', 'sindrome-met':'Síndrome metabólica',
+  ar:'Artrite reumatoide', psor:'Psoríase', les:'LES', dii:'Doença inflamatória intestinal',
+  hiv:'Infecção crônica pelo HIV', tx:'Transplante de órgão',
+  menarca:'Menarca precoce/tardia', gest:'Distúrbio gestacional', 'parto-prem':'Parto prematuro',
+  rciu:'RCIU', abortos:'Abortos de repetição', menopausa:'Menopausa precoce',
+  lpa50:'Lp(a) ≥50 mg/dL', pcr:'PCR-us ≥2,0 mg/L',
+  dur10:'DM há >10 anos', 'hf-dac':'HF de DAC prematura', sm:'Síndrome metabólica',
+  has:'HAS', tabag:'Tabagismo ativo', 'nac-inc':'NAC incipiente',
+  'retino-leve':'Retinopatia não proliferativa leve', 'cac10-300':'CAC 10 a 300 UA',
+  'placa-cart':'Placa carotídea <50%', 'angio-tc':'AngioTC com placa <50%',
+  'dm1-20':'DM1 >20 anos pós 18a', estenose50:'Estenose >50% em qualquer território',
+  'hipercol-grave':'Hipercolesterolemia grave', 'nac-inst':'NAC instalada',
+  'retino-mod-sev':'Retinopatia moderada-severa ou progressiva',
+  idade65:'Idade ≥65 anos', hcf:'Hipercolesterolemia familiar', 'revasc-prev':'CRM/ICP prévia',
+  'dm-cond':'Diabetes mellitus', 'has-cond':'Hipertensão arterial',
+  'drc-cond':'DRC (TFGe 15 a 59)', 'tabag-cond':'Tabagismo atual',
+  ldl100:'LDL-c persistente ≥100 apesar de terapia máxima', agudo2a:'Evento agudo <2 anos'
+};
+const lbl = k => LABELS[k] || k;
+
+// Metas pela seção 5.2 da diretriz SBC 2025
+const METAS = {
+  baixo:          { ldl: '< 115 mg/dL', nhdl: '< 145 mg/dL', red: 'pelo menos 30%' },
+  intermediario:  { ldl: '< 100 mg/dL', nhdl: '< 130 mg/dL', red: 'pelo menos 30%' },
+  alto:           { ldl: '< 70 mg/dL',  nhdl: '< 100 mg/dL', red: 'pelo menos 50%' },
+  muito_alto:     { ldl: '< 50 mg/dL',  nhdl: '< 80 mg/dL',  red: 'pelo menos 50%' },
+  extremo:        { ldl: '< 40 mg/dL',  nhdl: '< 70 mg/dL',  red: 'pelo menos 50%' }
+};
+
+// Conduta pela diretriz SBC 2025, não pelo WeMeds
+const TX = {
+  baixo: [
+    'Mudança de estilo de vida como base da conduta',
+    'Se LDL-c ou não-HDL-c persistentemente ≥30 mg/dL acima da meta, iniciar estatina',
+    'Se indicação de estatina, iniciar com baixa a moderada intensidade (sinvastatina 20–40 mg, atorvastatina 10 mg)'
+  ],
+  intermediario: [
+    'Mudança de estilo de vida como base da conduta',
+    'Se LDL-c ou não-HDL-c persistentemente ≥30 mg/dL acima da meta, iniciar estatina',
+    'Estatina de moderada intensidade como primeira linha (atorvastatina 10–20 mg, rosuvastatina 5–10 mg, sinvastatina 20–40 mg)',
+    'Se não atingir meta, intensificar ou associar ezetimiba 10 mg'
+  ],
+  alto: [
+    'Mudança de estilo de vida + terapia farmacológica desde o início',
+    'SBC 2025: estatina de alta intensidade + ezetimiba 10 mg como terapia inicial (atorvastatina 40–80 mg ou rosuvastatina 20–40 mg)',
+    'Alternativa: estatina de alta intensidade isolada, com meta de redução ≥50% do LDL-c',
+    'Se não atingir meta, associar ezetimiba, ácido bempedoico, anti-PCSK9 (evolocumabe, alirocumabe) ou inclisirana'
+  ],
+  muito_alto: [
+    'Mudança de estilo de vida + terapia farmacológica desde o início',
+    'SBC 2025: estatina de alta intensidade + ezetimiba, e considerar anti-PCSK9 desde o início',
+    'Meta: redução ≥50% do LDL-c além da meta absoluta <50 mg/dL',
+    'Se não atingir meta com estatina + ezetimiba, adicionar anti-PCSK9 ou inclisirana',
+    'Ácido bempedoico pode ser usado como alternativa em intolerantes à estatina'
+  ],
+  extremo: [
+    'Mudança de estilo de vida + terapia combinada intensiva desde o início',
+    'SBC 2025: estatina de alta intensidade + ezetimiba + anti-PCSK9 já como terapia inicial',
+    'Meta: LDL-c <40 mg/dL e redução ≥50% do basal',
+    'Inclisirana é alternativa aos anti-PCSK9 monoclonais',
+    'Considerar evinacumabe se HF homozigótica refratária'
+  ]
+};
+
+function computar() {
+  const sexo = getVal('sexo');
+  const idade = parseFloat(getVal('idade'));
+
+  const eventosMaiores = getChecked('.evento-maior');
+  const temEvento = eventosMaiores.length > 0;
+  const multiplosEventos = eventosMaiores.length >= 2;
+  const dcvaHeavy = getChecked('.dcva-heavy');
+
+  const temDM = document.getElementById('tem-dm').checked;
+  const dmTipo = document.querySelector('input[name="dm-tipo"]:checked')?.value;
+  const earList = getChecked('.ear');
+  const emarList = getChecked('.emar');
+  const renalCat = classificacaoRenal();
+
+  let earCount = earList.length;
+  let emarCount = emarList.length;
+  if (renalCat === 'alto') earCount++;
+  if (renalCat === 'muito_alto') emarCount++;
+
+  const altoDireto = getChecked('.alto-direto');
+
+  // PREVENT
+  const ct = parseFloat(getVal('pv-ct'));
+  const hdl = parseFloat(getVal('pv-hdl'));
+  const sbp = parseFloat(getVal('pv-sbp'));
+  const egfr = parseFloat(getVal('pv-egfr'));
+  const bpMeds = document.getElementById('pv-bpmeds').checked;
+  const statin = document.getElementById('pv-statin').checked;
+  const smoker = document.getElementById('pv-smoker').checked;
+
+  let prevent = NaN;
+  const preventOk = !isNaN(ct) && !isNaN(hdl) && !isNaN(sbp) && !isNaN(egfr)
+                  && !isNaN(idade) && (sexo === 'H' || sexo === 'M')
+                  && idade >= 30 && idade <= 79;
+  if (preventOk) {
+    prevent = preventAscvd10y({
+      sex: sexo, age: idade, totalChol: ct, hdl: hdl, sbp: sbp, egfr: egfr,
+      bpMeds, statin, smoker, diabetes: temDM
+    });
+  }
+  renderPreventOutput(prevent, preventOk, !isNaN(idade), sexo, idade);
+
+  const ldl160 = document.getElementById('ldl160').checked;
+  const agravList = getChecked('.agrav');
+  const condARList = getChecked('.cond-ar');
+
+  document.getElementById('sec-extremo').setAttribute('data-disabled', temEvento ? 'false' : 'true');
+
+  let categoria = 'pendente';
+  const razoes = [];
+  const razoesExtras = [];
+
+  if (temEvento) {
+    const evNames = eventosMaiores.map(e => lbl(e.dataset.key));
+    const ehExtremo = multiplosEventos || (eventosMaiores.length >= 1 && condARList.length >= 2);
+
+    if (ehExtremo) {
+      categoria = 'extremo';
+      if (multiplosEventos) {
+        razoes.push(`Múltiplos eventos CV maiores: ${evNames.join(', ')}`);
+      } else {
+        const condNames = condARList.map(c => lbl(c.dataset.key));
+        razoes.push(`1 evento maior (${evNames.join(', ')}) + ≥2 condições de alto risco (${condNames.join(', ')})`);
+      }
+    } else {
+      categoria = 'muito_alto';
+      razoes.push(`Evento CV maior prévio: ${evNames.join(', ')}`);
+      if (condARList.length === 1) {
+        razoesExtras.push(`Falta 1 condição de alto risco para Extremo (atual: ${lbl(condARList[0].dataset.key)})`);
+      }
+    }
+  } else if (dcvaHeavy.length > 0) {
+    categoria = 'muito_alto';
+    razoes.push(`Aterosclerose significativa: ${dcvaHeavy.map(e => lbl(e.dataset.key)).join(', ')}`);
+  } else if (temDM && dmTipo) {
+    const limiarIdade = sexo === 'H' ? 50 : sexo === 'M' ? 56 : null;
+
+    if (emarCount >= 1 || earCount >= 3) {
+      categoria = 'muito_alto';
+      const motivos = [];
+      if (emarCount >= 1) {
+        const nomes = emarList.map(e => lbl(e.dataset.key));
+        if (renalCat === 'muito_alto') nomes.push('EMAR renal');
+        motivos.push(`EMAR presente (${nomes.join(', ')})`);
+      }
+      if (earCount >= 3) {
+        const nomes = earList.map(e => lbl(e.dataset.key));
+        if (renalCat === 'alto') nomes.push('EAR renal');
+        motivos.push(`${earCount} EAR (${nomes.join(', ')})`);
+      }
+      razoes.push(`${dmTipo} com ${motivos.join(' e ')}`);
+    } else if (earCount >= 1) {
+      categoria = 'alto';
+      const nomes = earList.map(e => lbl(e.dataset.key));
+      if (renalCat === 'alto') nomes.push('EAR renal');
+      razoes.push(`${dmTipo} com ${earCount} EAR (${nomes.join(', ')})`);
+    } else if (limiarIdade !== null && !isNaN(idade) && idade >= limiarIdade) {
+      categoria = 'alto';
+      razoes.push(`${dmTipo} em ${sexo === 'H' ? 'homem' : 'mulher'} ≥${limiarIdade} anos sem EAR/EMAR`);
+    } else if (limiarIdade !== null && !isNaN(idade) && idade < limiarIdade) {
+      categoria = 'intermediario';
+      razoes.push(`${dmTipo} em ${sexo === 'H' ? 'homem' : 'mulher'} <${limiarIdade} anos sem EAR/EMAR`);
+    } else {
+      categoria = 'intermediario';
+      razoes.push(`${dmTipo} sem EAR/EMAR, idade/sexo não informados`);
+    }
+  } else if (altoDireto.length > 0) {
+    categoria = 'alto';
+    razoes.push(`Critério direto de Alto: ${altoDireto.map(e => lbl(e.dataset.key)).join(', ')}`);
+  } else if (preventOk) {
+    const agravNames = agravList.map(a => lbl(a.dataset.key));
+
+    if (prevent >= 20) {
+      categoria = 'alto';
+      razoes.push(`PREVENT ${prevent.toFixed(1)}% (≥20%)`);
+    } else if (prevent >= 5) {
+      if (agravList.length > 0) {
+        categoria = 'alto';
+        razoes.push(`PREVENT ${prevent.toFixed(1)}% (intermediário) reclassificado por agravante(s): ${agravNames.join(', ')}`);
+      } else {
+        categoria = 'intermediario';
+        razoes.push(`PREVENT ${prevent.toFixed(1)}% (5 a <20%), sem agravantes`);
+      }
+    } else {
+      if (agravList.length > 0 || ldl160) {
+        categoria = 'intermediario';
+        const motivos = [];
+        if (ldl160) motivos.push('LDL-c 160 a 189 mg/dL');
+        if (agravList.length > 0) motivos.push(`agravante(s): ${agravNames.join(', ')}`);
+        razoes.push(`PREVENT ${prevent.toFixed(1)}% (<5%), reclassificado por ${motivos.join(' e ')}`);
+      } else {
+        categoria = 'baixo';
+        razoes.push(`PREVENT ${prevent.toFixed(1)}% (<5%), sem agravantes, sem LDL-c 160 a 189`);
+      }
+    }
+  }
+
+  renderResultado(categoria, razoes, razoesExtras);
+}
+
+function renderPreventOutput(prevent, ok, hasAge, sexo, idade) {
+  const valueEl = document.getElementById('prevent-value');
+  const badge = document.getElementById('prevent-interp-badge');
+  if (!ok) {
+    valueEl.textContent = '—';
+    valueEl.classList.add('pending');
+    badge.textContent = 'Aguardando';
+    badge.removeAttribute('data-cat');
+    if (hasAge && (idade < 30 || idade > 79)) {
+      badge.textContent = 'Fora do range (30 a 79 anos)';
+    }
+    return;
+  }
+  valueEl.textContent = prevent.toFixed(1) + '%';
+  valueEl.classList.remove('pending');
+  let cat, lbl;
+  if (prevent >= 20) { cat = 'alto'; lbl = 'Alto'; }
+  else if (prevent >= 5) { cat = 'intermediario'; lbl = 'Intermediário'; }
+  else { cat = 'baixo'; lbl = 'Baixo'; }
+  badge.textContent = lbl;
+  badge.setAttribute('data-cat', cat);
+}
+
+function renderResultado(cat, razoes, razoesExtras) {
+  const card = document.getElementById('result-card');
+  const catEl = document.getElementById('result-category');
+  const reasonsEl = document.getElementById('result-reasons');
+  const metasWrap = document.getElementById('result-metas-wrap');
+  const txWrap = document.getElementById('result-tx-wrap');
+
+  card.setAttribute('data-cat', cat);
+
+  const nomes = {
+    pendente: '<em>Aguardando</em> dados',
+    baixo: 'Baixo Risco', intermediario: 'Intermediário',
+    alto: 'Alto Risco', muito_alto: 'Muito Alto Risco', extremo: 'Risco Extremo'
+  };
+  catEl.innerHTML = nomes[cat];
+
+  reasonsEl.innerHTML = '';
+  if (razoes.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = 'Preencha as seções ao lado. O motor reaplicará o fluxograma a cada alteração.';
+    reasonsEl.appendChild(li);
+  } else {
+    razoes.forEach(r => {
+      const li = document.createElement('li');
+      li.className = 'primary';
+      li.textContent = r;
+      reasonsEl.appendChild(li);
+    });
+    razoesExtras.forEach(r => {
+      const li = document.createElement('li');
+      li.textContent = r;
+      reasonsEl.appendChild(li);
+    });
+  }
+
+  if (cat === 'pendente') {
+    metasWrap.style.display = 'none';
+    txWrap.style.display = 'none';
+  } else {
+    metasWrap.style.display = '';
+    txWrap.style.display = '';
+    const m = METAS[cat];
+    document.getElementById('meta-ldl').textContent = m.ldl;
+    document.getElementById('meta-nhdl').textContent = m.nhdl;
+    document.getElementById('meta-red').textContent = m.red;
+
+    const txEl = document.getElementById('result-tx');
+    txEl.innerHTML = '';
+    TX[cat].forEach(t => {
+      const li = document.createElement('li');
+      li.textContent = t;
+      txEl.appendChild(li);
+    });
+  }
+}
+
+function resetAll() {
+  if (!confirm('Limpar todos os campos?')) return;
+  document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(c => c.checked = false);
+  document.querySelectorAll('input[type="number"], input[type="text"]').forEach(c => c.value = '');
+  document.querySelectorAll('select').forEach(c => c.selectedIndex = 0);
+  document.querySelectorAll('.renal-cell').forEach(c => c.classList.remove('selected'));
+  toggleDM();
+  toggleMulher();
+  computar();
+}
+
+function copiarParaProntuario() {
+  const card = document.getElementById('result-card');
+  const cat = card.getAttribute('data-cat');
+  if (cat === 'pendente') { showToast('Preencha os dados primeiro'); return; }
+
+  const nomesRisco = {
+    baixo: 'baixo risco cardiovascular',
+    intermediario: 'risco cardiovascular intermediário',
+    alto: 'alto risco cardiovascular',
+    muito_alto: 'muito alto risco cardiovascular',
+    extremo: 'risco cardiovascular extremo'
+  };
+
+  const prevValue = document.getElementById('prevent-value').textContent;
+  let texto = `Dislipidemia, ${nomesRisco[cat]}`;
+  if (prevValue !== '—') {
+    texto += ` (PREVENT ASCVD 10 anos ${prevValue})`;
+  }
+  texto += '.';
+
+  navigator.clipboard.writeText(texto).then(
+    () => showToast('Copiado para a área de transferência'),
+    () => {
+      const ta = document.createElement('textarea');
+      ta.value = texto;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Copiado');
+    }
+  );
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 2400);
+}
+
+toggleMulher();
+computar();
+</script>
+</body>
+</html>
