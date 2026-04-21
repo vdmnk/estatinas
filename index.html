@@ -300,6 +300,106 @@ body {
 
 .result-actions .btn { flex: 1; justify-content: center; }
 
+/* NNT details section */
+.result-nnt {
+  padding: 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg-card-alt);
+}
+
+.result-nnt summary {
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.result-nnt summary::-webkit-details-marker { display: none; }
+
+.result-nnt summary::after {
+  content: '+';
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink-faint);
+  transition: transform 0.2s ease;
+}
+
+.result-nnt[open] summary::after {
+  content: '−';
+}
+
+.result-nnt summary:hover { color: var(--ink); background: var(--bg-card); }
+
+.nnt-body {
+  padding: 4px 20px 16px;
+  font-size: 12px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.nnt-intro {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.nnt-group {
+  margin-top: 10px;
+}
+
+.nnt-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.nnt-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 0;
+  font-size: 12px;
+}
+
+.nnt-item strong {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.nnt-item span {
+  color: var(--ink-soft);
+}
+
+.nnt-source {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  font-size: 11px;
+  color: var(--ink-faint);
+  line-height: 1.45;
+}
+
+.nnt-source a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.nnt-source a:hover { text-decoration: underline; }
+
 /* Category-specific colors */
 .result-card[data-cat="baixo"] .result-category { color: var(--risco-baixo); }
 .result-card[data-cat="baixo"] .result-bar { background: var(--risco-baixo); }
@@ -1195,6 +1295,11 @@ body {
         <ul class="result-tx-list" id="result-tx"></ul>
       </div>
 
+      <details class="result-nnt" id="result-nnt" style="display:none;">
+        <summary>Para a conversa com o paciente</summary>
+        <div class="nnt-body" id="nnt-body"></div>
+      </details>
+
       <div class="result-actions">
         <button class="btn" onclick="copiarParaProntuario()">
           ⧉ Copiar para prontuário
@@ -1403,6 +1508,61 @@ const TX = {
   ]
 };
 
+// Números de NNT/NNH de theNNT.com, em 5 anos de estatina vs placebo
+// Fontes: USPSTF, CTT Collaboration, JUPITER, meta-análises citadas em theNNT.com
+const NNT_DATA = {
+  baixo: {
+    fonte: 'Prevenção primária em baixo risco, dados USPSTF 2016 (~70 mil pacientes)',
+    url: 'https://thennt.com/nnt/statins-persons-low-risk-cardiovascular-disease/',
+    beneficios: [
+      { o: 'Infarto não-fatal evitado', n: '1 em 217' },
+      { o: 'AVC não-fatal evitado', n: '1 em 313' },
+      { o: 'Morte evitada', n: '1 em 250 (incerto)' }
+    ]
+  },
+  intermediario: {
+    fonte: 'Prevenção primária, meta-análise CTT Collaboration',
+    url: 'https://thennt.com/nnt/statins-for-heart-disease-prevention-without-prior-heart-disease-2/',
+    beneficios: [
+      { o: 'Infarto não-fatal evitado', n: '1 em 60' },
+      { o: 'AVC evitado', n: '1 em 268' },
+      { o: 'Morte evitada', n: 'Sem benefício consistente' }
+    ]
+  },
+  alto: {
+    fonte: 'Prevenção primária em risco elevado, dados JUPITER (rosuvastatina 20 mg)',
+    url: 'https://thennt.com/nnt/statins-for-heart-disease-prevention-without-prior-heart-disease-2/',
+    beneficios: [
+      { o: 'Desfecho composto (IAM, AVC, revasc, morte)', n: '1 em 20' },
+      { o: 'Desfecho composto restrito (IAM, AVC, morte)', n: '1 em 29' },
+      { o: 'Morte evitada', n: 'Sem benefício de mortalidade isolada' }
+    ]
+  },
+  muito_alto: {
+    fonte: 'Prevenção secundária, doença cardiovascular conhecida',
+    url: 'https://thennt.com/nnt/statins-for-heart-disease-prevention-with-known-heart-disease/',
+    beneficios: [
+      { o: 'Infarto não-fatal evitado', n: '1 em 39' },
+      { o: 'Morte evitada', n: '1 em 83' },
+      { o: 'AVC evitado', n: '1 em 125' }
+    ]
+  },
+  extremo: {
+    fonte: 'Prevenção secundária, doença cardiovascular conhecida',
+    url: 'https://thennt.com/nnt/statins-for-heart-disease-prevention-with-known-heart-disease/',
+    beneficios: [
+      { o: 'Infarto não-fatal evitado', n: '1 em 39' },
+      { o: 'Morte evitada', n: '1 em 83' },
+      { o: 'AVC evitado', n: '1 em 125' }
+    ]
+  }
+};
+
+const NNH_COMUM = [
+  { o: 'Mialgia (estudo STOMP)', n: '1 em 21' },
+  { o: 'Diabetes novo (risco basal dependente)', n: '1 em 100 a 200' }
+];
+
 function computar() {
   const sexo = getVal('sexo');
   const idade = parseFloat(getVal('idade'));
@@ -1605,6 +1765,7 @@ function renderResultado(cat, razoes, razoesExtras) {
   if (cat === 'pendente') {
     metasWrap.style.display = 'none';
     txWrap.style.display = 'none';
+    document.getElementById('result-nnt').style.display = 'none';
   } else {
     metasWrap.style.display = '';
     txWrap.style.display = '';
@@ -1620,7 +1781,35 @@ function renderResultado(cat, razoes, razoesExtras) {
       li.textContent = t;
       txEl.appendChild(li);
     });
+
+    renderNNT(cat);
   }
+}
+
+function renderNNT(cat) {
+  const wrap = document.getElementById('result-nnt');
+  const body = document.getElementById('nnt-body');
+  const data = NNT_DATA[cat];
+  if (!data) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+
+  let html = '<p class="nnt-intro">Números absolutos em 5 anos de estatina vs placebo, para apoiar decisão compartilhada.</p>';
+
+  html += '<div class="nnt-group"><div class="nnt-group-label">Benefícios esperados</div>';
+  data.beneficios.forEach(b => {
+    html += `<div class="nnt-item"><span>${b.o}</span><strong>${b.n}</strong></div>`;
+  });
+  html += '</div>';
+
+  html += '<div class="nnt-group"><div class="nnt-group-label">Danos possíveis</div>';
+  NNH_COMUM.forEach(h => {
+    html += `<div class="nnt-item"><span>${h.o}</span><strong>${h.n}</strong></div>`;
+  });
+  html += '</div>';
+
+  html += `<div class="nnt-source">Fonte: ${data.fonte}. Dados compilados em <a href="${data.url}" target="_blank" rel="noopener">theNNT.com</a>. Valores de NNH de mialgia e diabetes aplicáveis a todas as categorias.</div>`;
+
+  body.innerHTML = html;
 }
 
 function resetAll() {
