@@ -1300,6 +1300,11 @@ body {
         <div class="nnt-body" id="nnt-body"></div>
       </details>
 
+      <details class="result-nnt" id="result-mitos" style="display:none;">
+        <summary>Mitos comuns sobre estatinas</summary>
+        <div class="nnt-body" id="mitos-body"></div>
+      </details>
+
       <div class="result-actions">
         <button class="btn" onclick="copiarParaProntuario()">
           ⧉ Copiar para prontuário
@@ -1558,9 +1563,16 @@ const NNT_DATA = {
   }
 };
 
+// Danos confirmados em ensaios duplo-cegos
+// Fonte: CTT Collaboration, Lancet 2026;407:689-703 (154.664 pacientes, 23 ensaios)
+// Para diabetes novo: CTT Lancet Diabetes Endocrinol 2024;12:306-19
+// NNH/ano = 1 / excesso absoluto anual
 const NNH_COMUM = [
-  { o: 'Mialgia (estudo STOMP)', n: '1 em 21' },
-  { o: 'Diabetes novo (risco basal dependente)', n: '1 em 100 a 200' }
+  { o: 'Transaminases alteradas', n: '1 em 1.111 por ano' },
+  { o: 'Outras alterações de função hepática', n: '1 em 2.000 por ano' },
+  { o: 'Edema', n: '1 em 1.429 por ano' },
+  { o: 'Proteinúria leve', n: '1 em 3.333 por ano' },
+  { o: 'Diabetes novo', n: '1 em 100 a 200 por ano' }
 ];
 
 function computar() {
@@ -1766,6 +1778,7 @@ function renderResultado(cat, razoes, razoesExtras) {
     metasWrap.style.display = 'none';
     txWrap.style.display = 'none';
     document.getElementById('result-nnt').style.display = 'none';
+    document.getElementById('result-mitos').style.display = 'none';
   } else {
     metasWrap.style.display = '';
     txWrap.style.display = '';
@@ -1788,28 +1801,63 @@ function renderResultado(cat, razoes, razoesExtras) {
 
 function renderNNT(cat) {
   const wrap = document.getElementById('result-nnt');
+  const mitosWrap = document.getElementById('result-mitos');
   const body = document.getElementById('nnt-body');
+  const mitosBody = document.getElementById('mitos-body');
   const data = NNT_DATA[cat];
-  if (!data) { wrap.style.display = 'none'; return; }
+  if (!data) {
+    wrap.style.display = 'none';
+    mitosWrap.style.display = 'none';
+    return;
+  }
   wrap.style.display = '';
+  mitosWrap.style.display = '';
 
-  let html = '<p class="nnt-intro">Números absolutos em 5 anos de estatina vs placebo, para apoiar decisão compartilhada.</p>';
+  let html = '<p class="nnt-intro">Números absolutos para apoiar decisão compartilhada com o paciente.</p>';
 
-  html += '<div class="nnt-group"><div class="nnt-group-label">Benefícios esperados</div>';
+  html += '<div class="nnt-group"><div class="nnt-group-label">Benefícios esperados em 5 anos</div>';
   data.beneficios.forEach(b => {
     html += `<div class="nnt-item"><span>${b.o}</span><strong>${b.n}</strong></div>`;
   });
   html += '</div>';
 
-  html += '<div class="nnt-group"><div class="nnt-group-label">Danos possíveis</div>';
+  html += '<div class="nnt-group"><div class="nnt-group-label">Danos confirmados, NNH por ano</div>';
   NNH_COMUM.forEach(h => {
     html += `<div class="nnt-item"><span>${h.o}</span><strong>${h.n}</strong></div>`;
   });
   html += '</div>';
 
-  html += `<div class="nnt-source">Fonte: ${data.fonte}. Dados compilados em <a href="${data.url}" target="_blank" rel="noopener">theNNT.com</a>. Valores de NNH de mialgia e diabetes aplicáveis a todas as categorias.</div>`;
+  html += `<div class="nnt-source">Benefícios: ${data.fonte}, compilado em <a href="${data.url}" target="_blank" rel="noopener">theNNT.com</a>. Danos: meta-análise CTT Collaboration de 23 ensaios duplo-cegos com 154.664 pacientes (<a href="https://doi.org/10.1016/S0140-6736(25)01578-8" target="_blank" rel="noopener">Lancet 2026;407:689-703</a>); diabetes novo de <a href="https://doi.org/10.1016/S2213-8587(24)00040-8" target="_blank" rel="noopener">CTT Lancet Diab Endocrinol 2024;12:306-19</a>.</div>`;
 
   body.innerHTML = html;
+
+  // Mitos comuns
+  let mitosHtml = '<p class="nnt-intro">Em meta-análise de 23 ensaios duplo-cegos com 154.664 pacientes, das 66 reações adversas listadas em bulas, 62 não foram confirmadas como causadas por estatina.</p>';
+
+  mitosHtml += '<div class="nnt-group"><div class="nnt-group-label">Não confirmados em ensaios cegos</div>';
+  const MITOS = [
+    'Comprometimento cognitivo, memória',
+    'Demência, doença de Alzheimer',
+    'Depressão',
+    'Distúrbios do sono',
+    'Neuropatia periférica',
+    'Disfunção erétil ou sexual',
+    'Lesão renal aguda',
+    'Doença pulmonar intersticial',
+    'Pancreatite',
+    'Cefaleia, tontura',
+    'Náusea, vômito, diarreia, constipação',
+    'Reações cutâneas (rash, prurido)',
+    'Astenia, fadiga, mal-estar'
+  ];
+  MITOS.forEach(m => {
+    mitosHtml += `<div class="nnt-item"><span>${m}</span><strong>sem efeito</strong></div>`;
+  });
+  mitosHtml += '</div>';
+
+  mitosHtml += `<div class="nnt-source">Fonte: <a href="https://doi.org/10.1016/S0140-6736(25)01578-8" target="_blank" rel="noopener">CTT Collaboration, Lancet 2026;407:689-703</a>. Os autores concluem que bulas de estatina superestimam riscos e devem ser revisadas para apoiar decisões informadas. Útil para responder ao paciente que ouviu de terceiros que estatina causa demência, depressão ou impotência.</div>`;
+
+  mitosBody.innerHTML = mitosHtml;
 }
 
 function resetAll() {
