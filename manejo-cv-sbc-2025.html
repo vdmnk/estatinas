@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manejo Cardiovascular · SBC 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f4efe6; --bg-card:#fbf8f2; --bg-card-alt:#f0e9dc;
+  --line:#d9d0bc; --line-strong:#b8ac90;
+  --ink:#1a1d23; --ink-soft:#5c5f66; --ink-faint:#8a8d93;
+  --accent:#1e3a5f; --accent-soft:#2c5282;
+  --level-1:#4a6b3a; --level-2:#b87333; --level-3:#b84a1f; --level-4:#8a2525; --level-5:#3e1622;
+  --level-1-bg:#e8ecd9; --level-2-bg:#f5e6cc; --level-3-bg:#f5dfd1; --level-4-bg:#e8cccc; --level-5-bg:#d8c8cd;
+  --shadow-sm:0 1px 2px rgba(26,29,35,0.06);
+  --shadow-md:0 4px 12px rgba(26,29,35,0.08);
+  --shadow-lg:0 12px 32px rgba(26,29,35,0.12);
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono','SF Mono',Monaco,'Courier New',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--ink);
+  line-height:1.55;font-size:15px;font-feature-settings:"ss01","cv11";
+  background-image:
+    radial-gradient(ellipse at top left,rgba(30,58,95,0.04) 0%,transparent 50%),
+    radial-gradient(ellipse at bottom right,rgba(184,115,51,0.04) 0%,transparent 50%);
+  min-height:100vh;
+}
+
+/* HEADER */
+.header{border-bottom:1px solid var(--line);background:var(--bg-card);padding:24px 0 20px;position:relative}
+.header::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:var(--accent)}
+.header-inner{max-width:1320px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.header-title{font-family:var(--font-display);font-size:clamp(26px,4vw,40px);font-weight:500;letter-spacing:-0.02em;line-height:1.05;color:var(--ink);font-variation-settings:"opsz" 72,"SOFT" 30}
+.header-title em{font-style:italic;font-weight:400;color:var(--accent);font-variation-settings:"opsz" 72,"SOFT" 100}
+.header-sub{font-size:13px;color:var(--ink-soft);margin-top:6px;letter-spacing:0.02em}
+.header-sub strong{font-weight:500;color:var(--ink)}
+.header-actions{display:flex;gap:8px}
+
+/* WRAPPER */
+.wrapper{max-width:1320px;margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:1fr 400px;gap:32px;align-items:start}
+.main-col{display:flex;flex-direction:column;gap:20px}
+
+/* SECTIONS */
+.section{background:var(--bg-card);border:1px solid var(--line);border-radius:2px;padding:22px;box-shadow:var(--shadow-sm)}
+.section.disabled{opacity:0.55}
+.section-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:6px}
+.section-num .tag{display:inline-block;margin-left:8px;padding:1px 6px;background:var(--bg-card-alt);border-radius:2px;font-size:10px;color:var(--ink-soft)}
+.section-num .tag-has{background:rgba(30,58,95,0.1);color:var(--accent)}
+.section-num .tag-dlp{background:rgba(184,115,51,0.12);color:var(--level-2)}
+.section-num .tag-both{background:rgba(74,107,58,0.13);color:var(--level-1)}
+.section-title{font-family:var(--font-display);font-size:22px;font-weight:500;letter-spacing:-0.01em;line-height:1.15;color:var(--ink);font-variation-settings:"opsz" 48,"SOFT" 30;margin-bottom:4px}
+.section-title em{font-style:italic;font-weight:400;color:var(--accent);font-variation-settings:"opsz" 48,"SOFT" 100}
+.section-desc{font-size:13px;color:var(--ink-soft);margin-bottom:18px;line-height:1.5}
+
+/* FORM */
+.field{margin-bottom:14px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+label.label{display:block;font-size:12px;color:var(--ink-soft);margin-bottom:4px;font-weight:500;letter-spacing:0.01em}
+.label-hint{font-size:11px;color:var(--ink-faint);font-weight:400;margin-left:4px}
+input[type="number"],input[type="text"],select{
+  width:100%;padding:8px 10px;border:1px solid var(--line-strong);border-radius:2px;
+  background:var(--bg);font-family:var(--font-body);font-size:14px;color:var(--ink);
+  transition:border-color 0.15s,background 0.15s;
+}
+input[type="number"]:focus,input[type="text"]:focus,select:focus{outline:none;border-color:var(--accent);background:#fff}
+input::placeholder{color:var(--ink-faint)}
+
+/* CHOICE BUTTONS */
+.choice-group{display:flex;gap:8px;flex-wrap:wrap}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice label{display:inline-block;padding:6px 14px;border:1px solid var(--line-strong);border-radius:2px;background:var(--bg);font-size:13px;color:var(--ink-soft);cursor:pointer;transition:all 0.15s;font-family:var(--font-body)}
+.choice input:checked + label{background:var(--accent);color:#fff;border-color:var(--accent)}
+.choice label:hover{border-color:var(--accent-soft);color:var(--ink)}
+
+/* CHECK LIST */
+.check-list{display:flex;flex-direction:column;gap:6px}
+.check-item{display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:6px 0;font-size:13.5px;color:var(--ink)}
+.check-item input{margin-top:3px;cursor:pointer;accent-color:var(--accent)}
+.check-item-sub{font-size:11.5px;color:var(--ink-faint);margin-top:1px}
+
+.subsection{border-top:1px dashed var(--line);margin-top:16px;padding-top:14px}
+.subsection-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.12em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:8px}
+
+.hidden{display:none !important}
+
+/* MED LIST */
+.med-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.med-row{display:grid;grid-template-columns:140px 1fr 110px 30px;gap:8px;align-items:center;padding:8px;background:var(--bg-card-alt);border:1px solid var(--line);border-radius:2px}
+.med-row select,.med-row input{padding:5px 8px;font-size:13px}
+.med-row .btn-remove{background:none;border:none;color:var(--ink-faint);cursor:pointer;font-size:18px;padding:0;line-height:1}
+.med-row .btn-remove:hover{color:var(--level-4)}
+.btn-add{background:none;border:1px dashed var(--line-strong);color:var(--ink-soft);padding:7px 12px;font-size:12.5px;cursor:pointer;font-family:var(--font-body);border-radius:2px;transition:all 0.15s}
+.btn-add:hover{border-color:var(--accent);color:var(--accent)}
+
+/* RENAL GRID — submódulo DM */
+.renal-grid{display:grid;grid-template-columns:140px repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:2px;overflow:hidden;margin-top:8px}
+.renal-grid .head{background:var(--bg-card-alt);font-family:var(--font-mono);font-size:10.5px;color:var(--ink-soft);padding:8px 6px;text-align:center;text-transform:uppercase;letter-spacing:0.05em;line-height:1.3}
+.renal-grid .row-label{background:var(--bg-card-alt);font-size:12px;font-weight:500;color:var(--ink);padding:8px 10px;display:flex;align-items:center}
+.renal-cell{background:var(--bg-card);padding:10px 6px;text-align:center;font-size:11.5px;cursor:default;transition:background 0.15s;line-height:1.3}
+.renal-cell.cat-alto{background:var(--level-2-bg);color:var(--level-3)}
+.renal-cell.cat-muito_alto{background:var(--level-4-bg);color:var(--level-4)}
+.renal-cell.cat-none{color:var(--ink-faint);font-style:italic}
+.renal-cell.selected{outline:2px solid var(--accent);outline-offset:-2px;font-weight:500}
+
+/* SIDEBAR */
+.side-col{position:sticky;top:20px;display:flex;flex-direction:column;gap:16px;max-height:calc(100vh - 40px);overflow-y:auto}
+.result-card{background:var(--bg-card);border:1px solid var(--line);border-radius:2px;box-shadow:var(--shadow-md);overflow:hidden}
+.result-card[data-diretriz="has"] .result-header{border-left:4px solid var(--accent)}
+.result-card[data-diretriz="dlp"] .result-header{border-left:4px solid var(--level-2)}
+.result-header{padding:14px 16px;border-bottom:1px solid var(--line);background:var(--bg-card-alt)}
+.result-diretriz{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.14em;color:var(--ink-faint);text-transform:uppercase}
+.result-label{font-family:var(--font-display);font-size:18px;font-weight:500;line-height:1.2;font-variation-settings:"opsz" 36,"SOFT" 30;margin-top:2px}
+.result-label em{font-style:italic;font-weight:400;color:var(--accent);font-variation-settings:"opsz" 36,"SOFT" 100}
+.result-cat-line{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);margin-top:5px;letter-spacing:0.02em}
+
+.cat-badge{display:inline-block;padding:2px 8px;border-radius:2px;font-size:10.5px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;margin-right:6px}
+.cat-baixo{background:var(--level-1-bg);color:var(--level-1)}
+.cat-limitrofe{background:var(--level-2-bg);color:var(--level-2)}
+.cat-intermediario{background:var(--level-2-bg);color:var(--level-3)}
+.cat-alto{background:var(--level-3-bg);color:var(--level-3)}
+.cat-muito_alto{background:var(--level-4-bg);color:var(--level-4)}
+.cat-extremo{background:var(--level-5-bg);color:#fff}
+.cat-indef{background:var(--bg-card-alt);color:var(--ink-faint)}
+
+.result-section{padding:12px 16px;border-bottom:1px solid var(--line)}
+.result-section:last-child{border-bottom:none}
+.result-section-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:6px}
+.result-decision{font-size:13px;color:var(--ink);line-height:1.45}
+.result-decision strong{font-weight:600;color:var(--accent)}
+.result-meta{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft)}
+.result-meta strong{color:var(--ink);font-weight:500}
+.action-card{background:var(--bg-card-alt);border-left:3px solid var(--accent);padding:9px 11px;margin-top:8px;font-size:12.5px;line-height:1.4}
+.action-card .action-title{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px}
+.action-card .action-med{font-weight:500;color:var(--ink);font-size:13px}
+.action-card .action-note{font-size:11.5px;color:var(--ink-soft);margin-top:4px;font-style:italic;line-height:1.35}
+
+.justif-list{font-size:12px;color:var(--ink-soft);line-height:1.45;padding-left:8px;list-style:none}
+.justif-list li{position:relative;padding-left:10px;margin-bottom:2px}
+.justif-list li::before{content:'·';position:absolute;left:-2px;color:var(--ink-faint);font-weight:bold}
+
+.prevent-display{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft)}
+.prevent-display strong{color:var(--ink);font-weight:500;font-size:14px}
+
+/* OUTPUT */
+.output-section{max-width:1320px;margin:0 auto;padding:0 24px 24px}
+.output-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.output-tab{background:var(--bg-card);border:1px solid var(--line);padding:8px 14px;font-size:12px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;border-radius:2px;transition:all 0.15s}
+.output-tab:hover{color:var(--accent);border-color:var(--accent)}
+.output-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.output-block{background:var(--bg-card);border:1px solid var(--line);border-radius:2px;padding:16px;margin-bottom:12px;display:none}
+.output-block.active{display:block}
+.output-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.output-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:var(--ink-faint);text-transform:uppercase}
+.btn-copy{background:var(--accent);color:#fff;border:none;padding:6px 14px;border-radius:2px;font-family:var(--font-body);font-size:12px;cursor:pointer;letter-spacing:0.02em;transition:background 0.15s}
+.btn-copy:hover{background:var(--accent-soft)}
+.btn-copy.btn-secondary{background:var(--bg-card-alt);color:var(--ink);border:1px solid var(--line-strong)}
+.btn-copy.btn-secondary:hover{background:var(--bg-card)}
+.output-pre{font-family:var(--font-mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:2px;padding:12px;white-space:pre-wrap;word-wrap:break-word;color:var(--ink);line-height:1.55;min-height:60px}
+
+/* FOOTER */
+.footer{max-width:1320px;margin:0 auto;padding:20px 24px 40px;border-top:1px dashed var(--line);text-align:center}
+.footer-text{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.6}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:2px;font-size:13px;box-shadow:var(--shadow-lg);transition:transform 0.2s;z-index:1000}
+.toast.visible{transform:translateX(-50%) translateY(0)}
+
+/* INFO/WARN BOXES */
+.info-box{background:var(--bg-card-alt);border-left:3px solid var(--accent);padding:9px 12px;margin-top:10px;font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+.warn-box{background:var(--level-3-bg);border-left:3px solid var(--level-3);padding:9px 12px;margin-top:10px;font-size:12.5px;color:var(--level-3);line-height:1.45}
+
+details{margin-top:8px}
+details summary{cursor:pointer;font-size:12px;color:var(--ink-soft);user-select:none;padding:4px 0}
+details summary:hover{color:var(--accent)}
+details[open] summary{color:var(--accent);margin-bottom:6px}
+details .det-body{font-size:12px;color:var(--ink-soft);line-height:1.5;padding-left:14px;border-left:1px solid var(--line)}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .wrapper{grid-template-columns:1fr}
+  .side-col{position:relative;top:0;order:-1;z-index:10;max-height:none}
+}
+@media (max-width:600px){
+  .field-row,.field-row-3{grid-template-columns:1fr}
+  .med-row{grid-template-columns:1fr 1fr;gap:6px}
+  .renal-grid{grid-template-columns:90px repeat(3,1fr);font-size:11px}
+  .header-inner{padding:0 16px}
+  .wrapper,.output-section,.footer{padding-left:16px;padding-right:16px}
+}
+@media print{
+  .side-col{position:static}
+  .btn-copy,.btn-add,.output-tab,.no-print{display:none}
+  .output-block{display:block !important}
+  body{background:#fff}
+  .section,.result-card,.output-block{box-shadow:none;break-inside:avoid}
+}
+
+/* Modo simples: esconder seções avançadas */
+body.modo-simples .seccao-avancada{display:none}
+
+/* Sanity panel */
+.sanity-panel{
+  background:#fef7e0;border:1px solid #e6c965;border-left:4px solid #c9a227;
+  border-radius:6px;padding:10px 14px;margin-bottom:14px;
+  font-family:var(--ui);font-size:13px;line-height:1.5;color:#5a4500;
+}
+.sanity-panel.error{background:#fde8e8;border-color:#e6a3a3;border-left-color:#b03333;color:#6a1f1f}
+.sanity-panel .sanity-title{font-weight:600;margin-bottom:6px;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.sanity-panel ul{margin:0;padding-left:18px}
+.sanity-panel li{margin-bottom:3px}
+
+/* Botão Por quê? */
+.result-section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.btn-explica{
+  font-family:var(--ui);font-size:10px;letter-spacing:.05em;
+  padding:3px 8px;background:transparent;border:1px solid var(--line);
+  border-radius:4px;cursor:pointer;color:var(--ink-soft);
+  text-transform:uppercase;font-weight:600;
+}
+.btn-explica:hover{background:var(--paper-2);color:var(--ink);border-color:var(--accent)}
+
+/* Caixa de explicação */
+.explica-box{
+  margin-top:10px;padding:10px 12px;background:var(--paper-2);
+  border-left:3px solid var(--accent);border-radius:4px;
+  font-family:var(--ui);font-size:12px;line-height:1.5;color:var(--ink-soft);
+}
+.explica-box .explica-titulo{font-weight:600;color:var(--ink);margin-bottom:6px;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.explica-box ul{margin:0;padding-left:16px}
+.explica-box li{margin-bottom:4px}
+.explica-box .ref{color:var(--ink-faint);font-style:italic;font-size:11px}
+
+/* Outputs editáveis */
+.output-edit{
+  width:100%;box-sizing:border-box;
+  font-family:var(--mono);font-size:13px;line-height:1.55;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:6px;
+  padding:14px 16px;resize:vertical;min-height:80px;
+  white-space:pre-wrap;word-break:break-word;
+}
+.output-edit:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(196,138,75,0.15)}
+.edit-hint{font-size:10px;font-weight:400;color:var(--ink-faint);font-style:italic;margin-left:8px;text-transform:none;letter-spacing:0}
+
+/* Auto-tick visual hint */
+.auto-ticked{position:relative}
+.auto-ticked::after{
+  content:'auto';position:absolute;top:-3px;right:-2px;
+  font-size:9px;background:var(--accent);color:#fff;
+  padding:1px 4px;border-radius:3px;letter-spacing:.04em;
+  font-family:var(--ui);font-weight:600;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <h1 class="header-title">Manejo <em>Cardiovascular</em></h1>
+      <p class="header-sub"><strong>Diretrizes Brasileiras de Hipertensão Arterial (SBC 2025) + Dislipidemias e Prevenção da Aterosclerose (SBC 2025)</strong></p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-add no-print" id="btn-modo" onclick="toggleModo()" title="Alternar entre modo simples (essencial) e avançado (todas as seções)">⚙ Modo: simples</button>
+      <button class="btn-add no-print" onclick="resetForm()">↻ Limpar</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+  <main class="main-col">
+
+    <!-- SEÇÃO 01 — IDENTIFICAÇÃO -->
+    <section class="section">
+      <div class="section-num">01 · Identificação <span class="tag tag-both">HAS + DLP</span></div>
+      <h2 class="section-title">Dados do <em>paciente</em></h2>
+      <p class="section-desc">Idade, sexo e medidas pressóricas. Aferição em consultório com média de duas medidas, ou valores de MAPA/MRPA quando disponíveis.</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="label">Idade (anos)</label>
+          <input type="number" id="age" min="18" max="110" placeholder="ex: 58" oninput="onIdadeChange();recompute()" autofocus>
+        </div>
+        <div class="field">
+          <label class="label">Sexo biológico</label>
+          <div class="choice-group">
+            <div class="choice"><input type="radio" name="sex" id="sex-m" value="M" onchange="recompute()"><label for="sex-m">Feminino</label></div>
+            <div class="choice"><input type="radio" name="sex" id="sex-h" value="H" onchange="recompute()"><label for="sex-h">Masculino</label></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="label">PAS <span class="label-hint">(mmHg)</span></label>
+          <input type="number" id="sbp" min="60" max="280" placeholder="ex: 148" oninput="recompute()">
+        </div>
+        <div class="field">
+          <label class="label">PAD <span class="label-hint">(mmHg)</span></label>
+          <input type="number" id="dbp" min="30" max="180" placeholder="ex: 92" oninput="recompute()">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Tabagismo atual</label>
+        <div class="choice-group">
+          <div class="choice"><input type="radio" name="smoker" id="smk-n" value="0" checked onchange="recompute()"><label for="smk-n">Não</label></div>
+          <div class="choice"><input type="radio" name="smoker" id="smk-y" value="1" onchange="recompute()"><label for="smk-y">Sim</label></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 02 — EVENTOS CV PRÉVIOS -->
+    <section class="section">
+      <div class="section-num">02 · DCVA estabelecida <span class="tag tag-both">HAS + DLP</span></div>
+      <h2 class="section-title">Evento cardiovascular <em>maior prévio</em></h2>
+      <p class="section-desc">Qualquer item abaixo: HAS recebe categoria de Alto Risco direto. Dislipidemia recebe Muito Alto (ou Extremo se ≥2 eventos ou 1 evento + ≥2 condições do Passo 07).</p>
+      <div class="check-list">
+        <label class="check-item"><input type="checkbox" class="evento-maior" data-key="sca" onchange="recompute()"><div><div>Síndrome coronária aguda recente</div><div class="check-item-sub">≤12 meses</div></div></label>
+        <label class="check-item"><input type="checkbox" class="evento-maior" data-key="iam" onchange="recompute()"><div>Histórico de infarto do miocárdio</div></label>
+        <label class="check-item"><input type="checkbox" class="evento-maior" data-key="avc" onchange="recompute()"><div>Histórico de AVC isquêmico</div></label>
+        <label class="check-item"><input type="checkbox" class="evento-maior" data-key="dap" onchange="recompute()"><div><div>Doença arterial periférica sintomática</div><div class="check-item-sub">claudicação com ITB &lt;0,85, ou revascularização, ou amputação prévia</div></div></label>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-label">Aterosclerose significativa (sem evento clínico)</div>
+        <div class="check-list">
+          <label class="check-item"><input type="checkbox" class="dcva-heavy" data-key="obstr50" onchange="recompute()"><div><div>Obstrução arterial ≥50%</div><div class="check-item-sub">coronária, cerebrovascular ou periférica</div></div></label>
+          <label class="check-item"><input type="checkbox" class="dcva-heavy" data-key="revasc" onchange="recompute()"><div><div>Revascularização arterial prévia</div><div class="check-item-sub">coronária, carotídea, renal ou periférica</div></div></label>
+          <label class="check-item"><input type="checkbox" class="dcva-heavy" data-key="cac300" onchange="recompute()"><div>CAC &gt;300 UA</div></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 03 — COMORBIDADES COMPARTILHADAS -->
+    <section class="section">
+      <div class="section-num">03 · Comorbidades <span class="tag tag-both">HAS + DLP</span></div>
+      <h2 class="section-title">Comorbidades e <em>populações especiais</em></h2>
+      <p class="section-desc">Cada motor consome o que precisa. DM, DRC e LOA classificam HAS como alto risco direto e abrem fluxos próprios na dislipidemia.</p>
+
+      <div class="check-list">
+        <label class="check-item">
+          <input type="checkbox" id="cond-dm" onchange="toggleDM();recompute()">
+          <div>
+            <div>Diabetes mellitus</div>
+            <div class="check-item-sub">Abre o submódulo da dislipidemia (Tabelas 4.5-4.8)</div>
+          </div>
+        </label>
+        <div id="dm-detail" class="hidden" style="margin-left:24px;margin-top:-4px;margin-bottom:8px;padding:8px 10px;background:var(--bg-card-alt);border-radius:2px">
+          <div style="margin-bottom:8px">
+            <div class="subsection-label" style="margin-bottom:4px">Tipo</div>
+            <div class="choice-group">
+              <div class="choice"><input type="radio" name="dmTipo" id="dm-t2" value="DM2" onchange="recompute()"><label for="dm-t2">DM2</label></div>
+              <div class="choice"><input type="radio" name="dmTipo" id="dm-t1" value="DM1" onchange="recompute()"><label for="dm-t1">DM1</label></div>
+            </div>
+          </div>
+          <details>
+            <summary>Estratificadores de Alto Risco · Tabela 4.6 (EAR)</summary>
+            <div class="det-body" style="padding:8px 0 0 14px">
+              <div class="check-list">
+                <label class="check-item"><input type="checkbox" class="ear" data-key="dur10" onchange="recompute()"><div>DM2 há mais de 10 anos</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="hf-dac" onchange="recompute()"><div>HF de DAC prematura</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="sm" onchange="recompute()"><div>Síndrome metabólica (IDF)</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="has" onchange="recompute()"><div>Hipertensão arterial, tratada ou não</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="tabag" onchange="recompute()"><div>Tabagismo ativo</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="nac-inc" onchange="recompute()"><div>NAC incipiente</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="retino-leve" onchange="recompute()"><div>Retinopatia não proliferativa leve</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="cac10-300" onchange="recompute()"><div>CAC entre 10 e 300 UA</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="placa-cart" onchange="recompute()"><div>Placa carotídea &lt;50%</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="angio-tc" onchange="recompute()"><div>AngioTC com placa &lt;50%</div></label>
+                <label class="check-item"><input type="checkbox" class="ear" data-key="aaa" onchange="recompute()"><div>Aneurisma de aorta abdominal</div></label>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary>Estratificadores de Muito Alto Risco · Tabela 4.8 (EMAR)</summary>
+            <div class="det-body" style="padding:8px 0 0 14px">
+              <div class="check-list">
+                <label class="check-item"><input type="checkbox" class="emar" data-key="dm1-20" onchange="recompute()"><div>DM1 >20 anos pós-18a</div></label>
+                <label class="check-item"><input type="checkbox" class="emar" data-key="estenose50" onchange="recompute()"><div>Estenose >50% em qualquer território</div></label>
+                <label class="check-item"><input type="checkbox" class="emar" data-key="hipercol-grave" onchange="recompute()"><div>Hipercolesterolemia grave (CT >310 ou LDL >190)</div></label>
+                <label class="check-item"><input type="checkbox" class="emar" data-key="nac-inst" onchange="recompute()"><div>NAC instalada (dois TAC alterados)</div></label>
+                <label class="check-item"><input type="checkbox" class="emar" data-key="retino-mod-sev" onchange="recompute()"><div>Retinopatia moderada-severa ou progressiva</div></label>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary>Submódulo renal · Tabela 4.7 (TFGe × albuminúria)</summary>
+            <div class="det-body" style="padding:8px 0 0 14px">
+              <div class="field-row" style="margin-bottom:8px">
+                <div class="field" style="margin:0"><label class="label">TFGe</label><input type="number" id="tfge" min="0" max="200" placeholder="ex: 72" oninput="atualizarRenal();recompute()"></div>
+                <div class="field" style="margin:0"><label class="label">Albuminúria (mg/g)</label><input type="number" id="uacr" min="0" max="5000" placeholder="ex: 180" oninput="atualizarRenal();recompute()"></div>
+              </div>
+              <div class="renal-grid">
+                <div class="head"></div>
+                <div class="head">Normal<br><span style="font-size:9.5px">&lt;30</span></div>
+                <div class="head">Micro<br><span style="font-size:9.5px">30-299</span></div>
+                <div class="head">Macro<br><span style="font-size:9.5px">≥300</span></div>
+                <div class="row-label">G1 · ≥90</div>
+                <div class="renal-cell cat-none" data-g="1" data-alb="0">—</div>
+                <div class="renal-cell cat-alto" data-g="1" data-alb="1">Alto</div>
+                <div class="renal-cell cat-muito_alto" data-g="1" data-alb="2">M. Alto</div>
+                <div class="row-label">G2 · 60-89</div>
+                <div class="renal-cell cat-none" data-g="2" data-alb="0">—</div>
+                <div class="renal-cell cat-alto" data-g="2" data-alb="1">Alto</div>
+                <div class="renal-cell cat-muito_alto" data-g="2" data-alb="2">M. Alto</div>
+                <div class="row-label">G3a · 45-59</div>
+                <div class="renal-cell cat-alto" data-g="3a" data-alb="0">Alto</div>
+                <div class="renal-cell cat-alto" data-g="3a" data-alb="1">Alto</div>
+                <div class="renal-cell cat-muito_alto" data-g="3a" data-alb="2">M. Alto</div>
+                <div class="row-label">G3b · 30-44</div>
+                <div class="renal-cell cat-alto" data-g="3b" data-alb="0">Alto</div>
+                <div class="renal-cell cat-muito_alto" data-g="3b" data-alb="1">M. Alto</div>
+                <div class="renal-cell cat-muito_alto" data-g="3b" data-alb="2">M. Alto</div>
+                <div class="row-label">G4-G5 · &lt;30</div>
+                <div class="renal-cell cat-muito_alto" data-g="4" data-alb="0">M. Alto</div>
+                <div class="renal-cell cat-muito_alto" data-g="4" data-alb="1">M. Alto</div>
+                <div class="renal-cell cat-muito_alto" data-g="4" data-alb="2">M. Alto</div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <label class="check-item">
+          <input type="checkbox" id="cond-drc" onchange="toggleDRC();recompute()">
+          <div>
+            <div>Doença renal crônica</div>
+            <div class="check-item-sub">Sem DM. Use se for um paciente DRC isolado. Em DM+DRC, preencha o submódulo renal acima.</div>
+          </div>
+        </label>
+        <div id="drc-detail" class="hidden" style="margin-left:24px;margin-top:-4px;margin-bottom:8px">
+          <div class="field-row">
+            <div class="field"><label class="label">Estágio</label>
+              <select id="drc-estagio" onchange="recompute()">
+                <option value="">—</option>
+                <option value="G3a">G3a (TFGe 45-59)</option>
+                <option value="G3b">G3b (TFGe 30-44)</option>
+                <option value="G4">G4 (TFGe 15-29)</option>
+                <option value="G5">G5 (TFGe &lt;15)</option>
+              </select>
+            </div>
+            <div class="field"><label class="label">Albuminúria</label>
+              <select id="drc-alb" onchange="recompute()">
+                <option value="A1">A1 (&lt;30)</option>
+                <option value="A2">A2 (30-300)</option>
+                <option value="A3">A3 (&gt;300)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <label class="check-item"><input type="checkbox" id="cond-loa" onchange="recompute()"><div><div>Lesão de órgão-alvo (LOA)</div><div class="check-item-sub">HVE, retinopatia hipertensiva III/IV, microalbuminúria, ITB &lt;0,9</div></div></label>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-label">Populações especiais — só motor HAS</div>
+        <div class="check-list">
+          <label class="check-item"><input type="checkbox" id="esp-icfer" onchange="recompute()"><div><div>Insuficiência cardíaca com FE reduzida</div><div class="check-item-sub">FE &lt;40% por ECO</div></div></label>
+          <label class="check-item"><input type="checkbox" id="esp-dac" onchange="recompute()"><div><div>DAC estabelecida sem evento maior cadastrado</div><div class="check-item-sub">Angina estável, sem IAM/SCA marcados acima</div></div></label>
+          <label class="check-item"><input type="checkbox" id="esp-fragil" onchange="recompute()"><div><div>Idoso frágil ou hipotensão ortostática</div><div class="check-item-sub">CFS ≥5, queda de PAS ≥20 mmHg em ortostase, expectativa de vida reduzida</div></div></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 04 — CRITÉRIOS ALTO RISCO DIRETO (DLP) -->
+    <section class="section seccao-avancada">
+      <div class="section-num">04 · Aterosclerose subclínica <span class="tag tag-dlp">DLP</span></div>
+      <h2 class="section-title">Critérios diretos de <em>alto risco</em></h2>
+      <p class="section-desc">Achados que levam direto a Alto Risco na diretriz de dislipidemia, mesmo sem evento prévio. Não influenciam o motor HAS.</p>
+      <div class="check-list">
+        <label class="check-item"><input type="checkbox" class="alto-direto" data-key="placa-carot" onchange="recompute()"><div>Placa carotídea &lt;50%</div></label>
+        <label class="check-item"><input type="checkbox" class="alto-direto" data-key="cac100" onchange="recompute()"><div>CAC entre 100 e 300 UA ou percentil &gt;75</div></label>
+        <label class="check-item"><input type="checkbox" class="alto-direto" data-key="angiotc" onchange="recompute()"><div>Placa em angioTC coronária &lt;50%</div></label>
+        <label class="check-item"><input type="checkbox" class="alto-direto" data-key="aaa" onchange="recompute()"><div>Aneurisma de aorta abdominal</div></label>
+        <label class="check-item"><input type="checkbox" class="alto-direto" data-key="ldl190" onchange="recompute()"><div>LDL-c ≥190 mg/dL</div></label>
+        <label class="check-item"><input type="checkbox" class="alto-direto" data-key="lpa180" onchange="recompute()"><div>Lp(a) &gt;180 mg/dL ou &gt;390 nmol/L</div></label>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 05 — VARIÁVEIS PARA PREVENT -->
+    <section class="section">
+      <div class="section-num">05 · Risco em 10 anos <span class="tag tag-both">HAS + DLP</span></div>
+      <h2 class="section-title">Escore <em>PREVENT-ASCVD</em></h2>
+      <p class="section-desc">Equações Khan 2024 calculadas localmente. Usado pelos dois motores (cortes distintos em cada diretriz). Faixa: 30 a 79 anos.</p>
+
+      <div class="field-row-3">
+        <div class="field"><label class="label">Colesterol total <span class="label-hint">(mg/dL)</span></label><input type="number" id="tc" min="80" max="500" placeholder="ex: 200" oninput="recompute()"></div>
+        <div class="field"><label class="label">HDL <span class="label-hint">(mg/dL)</span></label><input type="number" id="hdl" min="15" max="120" placeholder="ex: 45" oninput="recompute()"></div>
+        <div class="field"><label class="label">TFGe <span class="label-hint">(mL/min/1,73m²)</span></label><input type="number" id="egfr" min="5" max="160" placeholder="ex: 85" oninput="onEgfrChange();recompute()"></div>
+      </div>
+
+      <div class="info-box">
+        <strong>LDL-c entre 160 e 189 mg/dL:</strong> só para dislipidemia, eleva Baixo→Intermediário independente do PREVENT.
+        <label class="check-item" style="padding:6px 0 0 0"><input type="checkbox" id="ldl160" onchange="recompute()"><div>Paciente com LDL-c entre 160 e 189 mg/dL</div></label>
+      </div>
+
+      <details>
+        <summary>Os dois motores usam o PREVENT diferente</summary>
+        <div class="det-body" style="padding:8px 0 0 14px">
+          <strong>HAS · SBC 2025:</strong> &lt;5% baixo · 5 a &lt;7,5% limítrofe · 7,5 a &lt;20% intermediário · ≥20% alto.<br><br>
+          <strong>Dislipidemia · SBC 2025:</strong> &lt;5% baixo · 5 a &lt;20% intermediário · ≥20% alto. Agravantes reclassificam: baixo→intermediário ou intermediário→alto. LDL 160-189 mg/dL reclassifica baixo→intermediário.
+        </div>
+      </details>
+    </section>
+
+    <!-- SEÇÃO 06 — AGRAVANTES (DLP) -->
+    <section class="section">
+      <div class="section-num">06 · Agravantes Tabela 4.3 <span class="tag tag-dlp">DLP</span></div>
+      <h2 class="section-title">Fatores <em>agravantes</em></h2>
+      <p class="section-desc">Só usados pelo motor de dislipidemia. Reclassificam Intermediário→Alto, ou Baixo→Intermediário.</p>
+      <div class="check-list">
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="hf-dcv" onchange="recompute()"><div><div>História familiar de DCV prematura</div><div class="check-item-sub">parente de 1º grau com evento &lt;55a (homem) ou &lt;65a (mulher)</div></div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="esteatose" onchange="recompute()"><div>Esteatose hepática, especialmente com fibrose</div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="sindrome-met" onchange="recompute()"><div>Síndrome metabólica</div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="ar" onchange="recompute()"><div>Artrite reumatoide</div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="psor" onchange="recompute()"><div>Psoríase</div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="les" onchange="recompute()"><div>Lúpus eritematoso sistêmico</div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="dii" onchange="recompute()"><div>Doença inflamatória intestinal</div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="hiv" onchange="recompute()"><div>Infecção crônica pelo HIV</div></label>
+        <label class="check-item"><input type="checkbox" class="agrav" data-key="tx" onchange="recompute()"><div>Transplante de órgão</div></label>
+      </div>
+      <div id="agrav-mulher" class="subsection">
+        <div class="subsection-label">Específicos das mulheres</div>
+        <div class="check-list">
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="menarca" onchange="recompute()"><div>Menarca precoce (≤12a) ou tardia (≥17a)</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="gest" onchange="recompute()"><div>Distúrbio gestacional prévio (PE, eclâmpsia, HAS ou DM gestacional)</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="parto-prem" onchange="recompute()"><div>Parto prematuro</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="rciu" onchange="recompute()"><div>RCIU</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="abortos" onchange="recompute()"><div>Abortos de repetição (≥3)</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="menopausa" onchange="recompute()"><div>Menopausa precoce (&lt;40a)</div></label>
+        </div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-label">Biomarcadores</div>
+        <div class="check-list">
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="lpa50" onchange="recompute()"><div>Lp(a) ≥50 mg/dL ou ≥125 nmol/L</div></label>
+          <label class="check-item"><input type="checkbox" class="agrav" data-key="pcr" onchange="recompute()"><div>PCR-us ≥2,0 mg/L</div></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 07 — CONDIÇÕES ALTO RISCO (TABELA 4.2) -->
+    <section class="section seccao-avancada" id="sec-extremo">
+      <div class="section-num">07 · Condições de alto risco · Tabela 4.2 <span class="tag tag-dlp">DLP</span></div>
+      <h2 class="section-title">Critério adicional para <em>Risco Extremo</em></h2>
+      <p class="section-desc">Preencha apenas se houver evento CV maior no Passo 02. <strong>1 evento + ≥2 condições = Extremo.</strong></p>
+      <div class="check-list">
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="idade65" onchange="recompute()"><div>Idade ≥65 anos</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="hcf" onchange="recompute()"><div>Hipercolesterolemia familiar</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="revasc-prev" onchange="recompute()"><div>CRM ou ICP prévia (fora do evento maior)</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="dm-cond" onchange="recompute()"><div>Diabetes mellitus</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="has-cond" onchange="recompute()"><div>Hipertensão arterial</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="drc-cond" onchange="recompute()"><div>DRC com TFGe 15-59</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="tabag-cond" onchange="recompute()"><div>Tabagismo atual</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="ldl100" onchange="recompute()"><div>LDL-c persistente ≥100 apesar de estatina máxima + ezetimiba</div></label>
+        <label class="check-item"><input type="checkbox" class="cond-ar" data-key="agudo2a" onchange="recompute()"><div>Evento agudo &lt;2 anos</div></label>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 08 — MEDICAÇÃO ATUAL -->
+    <section class="section">
+      <div class="section-num">08 · Tratamento em curso <span class="tag tag-both">HAS + DLP</span></div>
+      <h2 class="section-title">Medicação <em>atual</em></h2>
+      <p class="section-desc">Anti-hipertensivos em uso e situação da estatina. Doses em mg/dia (soma das tomadas).</p>
+
+      <div id="med-list" class="med-list"></div>
+      <button class="btn-add" onclick="addMed()">+ Adicionar anti-hipertensivo</button>
+
+      <div class="subsection">
+        <div class="subsection-label">Estatina</div>
+        <label class="check-item"><input type="checkbox" id="em-uso-estatina" onchange="recompute()"><div>Em uso de estatina</div></label>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="side-col">
+
+    <!-- PAINEL DE AVISOS (sanity checks) -->
+    <div id="sanity-panel" class="sanity-panel" style="display:none"></div>
+
+    <!-- CARD HAS -->
+    <div class="result-card" data-diretriz="has">
+      <div class="result-header">
+        <div class="result-diretriz">Hipertensão · SBC 2025</div>
+        <div class="result-label" id="has-pa-label">Aguardando <em>dados</em></div>
+        <div class="result-cat-line" id="has-pa-value">—</div>
+        <div id="has-risco-badge" style="margin-top:6px"></div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-title">
+          <span>Risco CV pela HAS</span>
+          <button class="btn-explica" onclick="toggleExplica('has')" title="Mostrar critérios que levaram a esta classificação">Por quê?</button>
+        </div>
+        <div class="prevent-display" id="has-prevent-display">PREVENT: <strong>—</strong></div>
+        <ul class="justif-list" id="has-justif"></ul>
+        <div id="has-explica" class="explica-box" style="display:none"></div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-title">Meta de PA</div>
+        <div class="result-meta" id="has-meta">—</div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-title">Decisão clínica</div>
+        <div class="result-decision" id="has-decisao">Preencha os dados básicos.</div>
+        <div id="has-acao"></div>
+      </div>
+    </div>
+
+    <!-- CARD DISLIPIDEMIA -->
+    <div class="result-card" data-diretriz="dlp">
+      <div class="result-header">
+        <div class="result-diretriz">Dislipidemia · SBC 2025</div>
+        <div class="result-label" id="dlp-cat-label">Aguardando <em>dados</em></div>
+        <div id="dlp-risco-badge" style="margin-top:6px"></div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-title">
+          <span>Categoria de risco</span>
+          <button class="btn-explica" onclick="toggleExplica('dlp')" title="Mostrar critérios que levaram a esta classificação">Por quê?</button>
+        </div>
+        <ul class="justif-list" id="dlp-justif"></ul>
+        <div id="dlp-explica" class="explica-box" style="display:none"></div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-title">Metas lipídicas</div>
+        <div class="result-meta" id="dlp-metas">—</div>
+      </div>
+      <div class="result-section">
+        <div class="result-section-title">Conduta farmacológica</div>
+        <div id="dlp-acao"><p style="color:var(--ink-faint);font-size:13px">—</p></div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- OUTPUTS -->
+<div class="output-section">
+  <div class="output-tabs no-print">
+    <button class="output-tab active" onclick="switchTab('all')">Tudo</button>
+    <button class="output-tab" onclick="switchTab('a')">#A</button>
+    <button class="output-tab" onclick="switchTab('p-has')">#P · HAS</button>
+    <button class="output-tab" onclick="switchTab('p-dlp')">#P · Dislipidemia</button>
+  </div>
+
+  <div class="output-block active" id="block-a" data-tab="a all">
+    <div class="output-header">
+      <div class="output-label">Avaliação (#A) · unificado <span class="edit-hint">editável antes de copiar</span></div>
+      <button class="btn-copy" onclick="copiar('output-a','Avaliação copiada')">Copiar #A</button>
+    </div>
+    <textarea class="output-pre output-edit" id="output-a" rows="4" spellcheck="true">—</textarea>
+  </div>
+
+  <div class="output-block active" id="block-p-has" data-tab="p-has all">
+    <div class="output-header">
+      <div class="output-label">Plano (#P) · Hipertensão <span class="edit-hint">editável</span></div>
+      <button class="btn-copy" onclick="copiar('output-p-has','Plano HAS copiado')">Copiar #P HAS</button>
+    </div>
+    <textarea class="output-pre output-edit" id="output-p-has" rows="6" spellcheck="true">—</textarea>
+  </div>
+
+  <div class="output-block active" id="block-p-dlp" data-tab="p-dlp all">
+    <div class="output-header">
+      <div class="output-label">Plano (#P) · Dislipidemia <span class="edit-hint">editável</span></div>
+      <button class="btn-copy" onclick="copiar('output-p-dlp','Plano Dislipidemia copiado')">Copiar #P Dislipidemia</button>
+    </div>
+    <textarea class="output-pre output-edit" id="output-p-dlp" rows="6" spellcheck="true">—</textarea>
+  </div>
+
+  <div style="text-align:right;margin-top:6px">
+    <button class="btn-copy btn-secondary" onclick="copiarTudo()">⧉ Copiar #A + #P combinados</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <p class="footer-text">SBC 2025 · HAS: Arq Bras Cardiol 122(9):e20250624 · DISLIPIDEMIA: Arq Bras Cardiol 122(9):e20250640 · REMUME CURITIBA · FARMÁCIA POPULAR</p>
+  <p class="footer-text" style="margin-top:6px;opacity:0.7">Vibecodado com Claude</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// CATÁLOGO REMUME + FARMÁCIA POPULAR (anti-hipertensivos)
+// ============================================================
+const CATALOGO = {
+  hctz:        { classe:'DIU', nome:'Hidroclorotiazida', apresent:'25 mg', fp:true,  doseMin:12.5, doseMax:25, posologia:'pela manhã', semanaInicio:25 },
+  furosemida:  { classe:'DIU-alça', nome:'Furosemida', apresent:'40 mg', fp:false, doseMin:20, doseMax:80, posologia:'pela manhã', semanaInicio:40 },
+  espiro:      { classe:'ARM', nome:'Espironolactona', apresent:'25 ou 100 mg', fp:false, doseMin:25, doseMax:50, posologia:'pela manhã', semanaInicio:25 },
+  anlod:       { classe:'BCC', nome:'Anlodipino', apresent:'5 ou 10 mg', fp:false, doseMin:5, doseMax:10, posologia:'à noite', semanaInicio:5 },
+  nifedR:      { classe:'BCC', nome:'Nifedipino retard', apresent:'20 mg', fp:false, doseMin:20, doseMax:60, posologia:'12/12h', semanaInicio:20 },
+  capt:        { classe:'IECA', nome:'Captopril', apresent:'25 mg', fp:true, doseMin:25, doseMax:150, posologia:'8/8h', semanaInicio:75 },
+  enal:        { classe:'IECA', nome:'Enalapril', apresent:'5 ou 20 mg', fp:true, doseMin:5, doseMax:40, posologia:'12/12h ou 1x/dia', semanaInicio:10 },
+  losart:      { classe:'BRA', nome:'Losartana', apresent:'50 mg', fp:true, doseMin:25, doseMax:100, posologia:'1x ou 12/12h', semanaInicio:50 },
+  atenolol:    { classe:'BB', nome:'Atenolol', apresent:'50 mg', fp:true, doseMin:25, doseMax:100, posologia:'pela manhã', semanaInicio:50 },
+  propranolol: { classe:'BB', nome:'Propranolol', apresent:'40 mg', fp:true, doseMin:40, doseMax:240, posologia:'12/12h', semanaInicio:80 },
+  carvedilol:  { classe:'BB', nome:'Carvedilol', apresent:'6,25/12,5/25 mg', fp:false, doseMin:6.25, doseMax:50, posologia:'12/12h', semanaInicio:12.5 },
+};
+
+const LABELS_DLP = {
+  sca:'SCA recente (≤12 meses)', iam:'IAM prévio', avc:'AVC isquêmico prévio', dap:'DAP sintomática',
+  obstr50:'Obstrução arterial ≥50%', revasc:'Revascularização arterial prévia', cac300:'CAC >300 UA',
+  'placa-carot':'Placa carotídea <50%', cac100:'CAC 100-300 UA ou p75',
+  angiotc:'Placa em angioTC <50%', aaa:'AAA', ldl190:'LDL-c ≥190 mg/dL', lpa180:'Lp(a) >180 mg/dL',
+  'hf-dcv':'HF DCV prematura', esteatose:'Esteatose hepática', 'sindrome-met':'Síndrome metabólica',
+  ar:'AR', psor:'Psoríase', les:'LES', dii:'DII', hiv:'HIV', tx:'Transplante',
+  menarca:'Menarca precoce/tardia', gest:'Distúrbio gestacional', 'parto-prem':'Parto prematuro',
+  rciu:'RCIU', abortos:'Abortos de repetição', menopausa:'Menopausa precoce',
+  lpa50:'Lp(a) ≥50 mg/dL', pcr:'PCR-us ≥2 mg/L',
+  dur10:'DM há >10a', 'hf-dac':'HF DAC prematura', sm:'SM', has:'HAS', tabag:'Tabagismo ativo',
+  'nac-inc':'NAC incipiente', 'retino-leve':'Retinopatia leve', 'cac10-300':'CAC 10-300 UA',
+  'placa-cart':'Placa carotídea <50%', 'angio-tc':'AngioTC <50%',
+  'dm1-20':'DM1 >20a pós-18a', estenose50:'Estenose >50%', 'hipercol-grave':'Hipercol grave',
+  'nac-inst':'NAC instalada', 'retino-mod-sev':'Retinopatia mod-sev',
+  idade65:'Idade ≥65a', hcf:'HCF', 'revasc-prev':'CRM/ICP prévia', 'dm-cond':'DM', 'has-cond':'HAS',
+  'drc-cond':'DRC G3-G4', 'tabag-cond':'Tabagismo', ldl100:'LDL ≥100 apesar de TX máx', agudo2a:'Evento <2a'
+};
+const lbl = k => LABELS_DLP[k] || k;
+
+// ============================================================
+// PREVENT-ASCVD 10y (Khan 2024, Table S12A) — convenção H/M
+// ============================================================
+const PREVENT_COEFF = {
+  women: { age_per_10:0.719883, nonhdl_per_mmol:0.1176967, hdl_per_03_mmol:-0.151185,
+    sbp_lt110_per_20:-0.0835358, sbp_ge110_per_20:0.3592852, diabetes:0.8348585, smoking:0.4831078,
+    egfr_lt60:0.4864619, egfr_ge60:0.0397779, antihtn:0.2265309, statin:-0.0592374,
+    treated_sbp_ge110:-0.0395762, treated_nonhdl:0.0844423, age_x_nonhdl:-0.0567839,
+    age_x_hdl:0.0325692, age_x_sbp_ge110:-0.1035985, age_x_diabetes:-0.2417542,
+    age_x_smoking:-0.0791142, age_x_egfr_lt60:-0.1671492, constant:-3.819975 },
+  men: { age_per_10:0.7099847, nonhdl_per_mmol:0.1658663, hdl_per_03_mmol:-0.1144285,
+    sbp_lt110_per_20:-0.2837212, sbp_ge110_per_20:0.3239977, diabetes:0.7189597, smoking:0.3956973,
+    egfr_lt60:0.3690075, egfr_ge60:0.0203619, antihtn:0.2036522, statin:-0.0865581,
+    treated_sbp_ge110:-0.0322916, treated_nonhdl:0.114563, age_x_nonhdl:-0.0300005,
+    age_x_hdl:0.0232747, age_x_sbp_ge110:-0.0927024, age_x_diabetes:-0.2018525,
+    age_x_smoking:-0.0970527, age_x_egfr_lt60:-0.1217081, constant:-3.500655 }
+};
+
+// 'M' = mulher → women; 'H' = homem → men
+function preventAscvd10y(p) {
+  const c = p.sex === 'M' ? PREVENT_COEFF.women : PREVENT_COEFF.men;
+  const tc_mmol = p.totalChol/38.67, hdl_mmol = p.hdl/38.67;
+  const nonHDL_mmol = tc_mmol - hdl_mmol;
+  const age_c = (p.age-55)/10, nonHDL_c = nonHDL_mmol - 3.5, hdl_c = (hdl_mmol-1.3)/0.3;
+  const sbp_c_lt110 = (Math.min(p.sbp,110)-110)/20, sbp_c_ge110 = (Math.max(p.sbp,110)-130)/20;
+  const egfr_c_lt60 = (Math.min(p.egfr,60)-60)/-15, egfr_c_ge60 = (Math.max(p.egfr,60)-90)/-15;
+  const dm=p.diabetes?1:0, smk=p.smoker?1:0, bpm=p.bpMeds?1:0, st=p.statin?1:0;
+  const lp = c.constant + c.age_per_10*age_c + c.nonhdl_per_mmol*nonHDL_c +
+    c.hdl_per_03_mmol*hdl_c + c.sbp_lt110_per_20*sbp_c_lt110 + c.sbp_ge110_per_20*sbp_c_ge110 +
+    c.diabetes*dm + c.smoking*smk + c.egfr_lt60*egfr_c_lt60 + c.egfr_ge60*egfr_c_ge60 +
+    c.antihtn*bpm + c.statin*st + c.treated_sbp_ge110*(bpm*sbp_c_ge110) +
+    c.treated_nonhdl*(st*nonHDL_c) + c.age_x_nonhdl*age_c*nonHDL_c +
+    c.age_x_hdl*age_c*hdl_c + c.age_x_sbp_ge110*age_c*sbp_c_ge110 +
+    c.age_x_diabetes*age_c*dm + c.age_x_smoking*age_c*smk + c.age_x_egfr_lt60*age_c*egfr_c_lt60;
+  return Math.exp(lp)/(1+Math.exp(lp))*100;
+}
+
+// ============================================================
+// ESTADO
+// ============================================================
+let medRows = [];
+
+function getChecked(sel){ return Array.from(document.querySelectorAll(sel)).filter(c => c.checked); }
+
+function classificacaoRenal() {
+  const cell = document.querySelector('.renal-cell.selected');
+  if (!cell) return null;
+  if (cell.classList.contains('cat-muito_alto')) return 'muito_alto';
+  if (cell.classList.contains('cat-alto')) return 'alto';
+  return null;
+}
+
+function readState() {
+  const sexSel = document.querySelector('input[name="sex"]:checked');
+  const dmTipoSel = document.querySelector('input[name="dmTipo"]:checked');
+  return {
+    age: +document.getElementById('age').value || null,
+    sex: sexSel ? sexSel.value : null,
+    sbp: +document.getElementById('sbp').value || null,
+    dbp: +document.getElementById('dbp').value || null,
+    smoker: document.querySelector('input[name="smoker"]:checked')?.value === '1',
+    // Eventos & DCVA (compartilhado)
+    eventosMaiores: getChecked('.evento-maior'),
+    dcvaHeavy: getChecked('.dcva-heavy'),
+    // DM com submódulos
+    dm: document.getElementById('cond-dm').checked,
+    dmTipo: dmTipoSel ? dmTipoSel.value : null,
+    ear: getChecked('.ear'),
+    emar: getChecked('.emar'),
+    renalCat: classificacaoRenal(),
+    // DRC isolada
+    drc: document.getElementById('cond-drc').checked,
+    drcEstagio: document.getElementById('drc-estagio').value,
+    drcAlb: document.getElementById('drc-alb').value,
+    loa: document.getElementById('cond-loa').checked,
+    // Populações especiais HAS
+    icfer: document.getElementById('esp-icfer').checked,
+    dac: document.getElementById('esp-dac').checked,
+    fragil: document.getElementById('esp-fragil').checked,
+    // Alto direto DLP
+    altoDireto: getChecked('.alto-direto'),
+    // PREVENT
+    totalChol: +document.getElementById('tc').value || null,
+    hdl: +document.getElementById('hdl').value || null,
+    egfr: +document.getElementById('egfr').value || null,
+    ldl160: document.getElementById('ldl160').checked,
+    // Agravantes & cond AR
+    agrav: getChecked('.agrav'),
+    condAR: getChecked('.cond-ar'),
+    // Medicação
+    emUsoEstatina: document.getElementById('em-uso-estatina').checked,
+    medicacoes: medRows.filter(m => m.princ).map(m => ({...m, ...CATALOGO[m.princ]}))
+  };
+}
+
+function calcularPrevent(s) {
+  if (s.age < 30 || s.age > 79) return { ok:false, value:null };
+  if (!s.sex || !s.sbp || !s.totalChol || !s.hdl || !s.egfr) return { ok:false, value:null };
+  return {
+    ok: true,
+    value: preventAscvd10y({
+      sex: s.sex, age: s.age, sbp: s.sbp, totalChol: s.totalChol, hdl: s.hdl,
+      bpMeds: s.medicacoes.length > 0 ? 1 : 0,
+      statin: s.emUsoEstatina ? 1 : 0,
+      diabetes: s.dm ? 1 : 0,
+      smoker: s.smoker ? 1 : 0,
+      egfr: s.egfr
+    })
+  };
+}
+
+
+// ============================================================
+// MOTOR HAS — Diretriz SBC HAS 2025
+// ============================================================
+function classificarPA(sbp, dbp) {
+  if (!sbp || !dbp) return null;
+  if (sbp >= 180 || dbp >= 110) return { nivel:'estagio3', label:'HA estágio 3', cid:'I10' };
+  if (sbp >= 160 || dbp >= 100) return { nivel:'estagio2', label:'HA estágio 2', cid:'I10' };
+  if (sbp >= 140 || dbp >= 90)  return { nivel:'estagio1', label:'HA estágio 1', cid:'I10' };
+  if (sbp >= 120 || dbp >= 80)  return { nivel:'preHA', label:'Pré-hipertensão', cid:'R03.0' };
+  return { nivel:'normal', label:'PA normal', cid:null };
+}
+
+function estratificarRiscoHAS(s, prevent) {
+  const motivos = [];
+  // DCV manifesta (eventos maiores ou aterosclerose significativa)
+  if (s.eventosMaiores.length > 0) motivos.push('DCV manifesta: ' + s.eventosMaiores.map(e => lbl(e.dataset.key)).join(', '));
+  if (s.dcvaHeavy.length > 0) motivos.push('Aterosclerose significativa: ' + s.dcvaHeavy.map(e => lbl(e.dataset.key)).join(', '));
+  if (s.dm) motivos.push('Diabetes mellitus');
+  if (s.drc) motivos.push('DRC' + (s.drcEstagio ? ' ' + s.drcEstagio : ''));
+  if (s.loa) motivos.push('Lesão de órgão-alvo');
+  if (s.icfer) motivos.push('IC com FE reduzida');
+  if (s.dac) motivos.push('DAC estabelecida');
+  if (s.altoDireto.some(a => a.dataset.key === 'ldl190')) motivos.push('LDL-c ≥190 mg/dL (HCF)');
+  
+  if (motivos.length > 0) return { cat:'alto', via:'direto', motivos, prevent:null };
+  
+  if (prevent.ok) {
+    let cat;
+    if (prevent.value < 5) cat = 'baixo';
+    else if (prevent.value < 7.5) cat = 'limitrofe';
+    else if (prevent.value < 20) cat = 'intermediario';
+    else cat = 'alto';
+    return { cat, via:'prevent', prevent:prevent.value, motivos:[] };
+  }
+  
+  if (s.age >= 80) {
+    return { cat:'intermediario', via:'idoso-80', prevent:null, motivos:['Idade ≥80 anos · Quadro 4.6'] };
+  }
+  return { cat:'indef', via:'fora-faixa', prevent:null, motivos:[] };
+}
+
+function metaPAHAS(s) {
+  if (s.fragil || (s.age && s.age >= 80)) return 'PAS <140 mmHg, ao menor valor tolerado';
+  return 'PA <130/80 mmHg';
+}
+
+function temComorbidadeQueDispensaMRPA(s) {
+  // Comorbidades/condições que justificam iniciar tratamento direto na consulta
+  // sem aguardar confirmação por MRPA (porque já indicam HAS estabelecida ou
+  // alteram diretamente a conduta).
+  return s.dm || s.drc || s.loa || s.icfer || s.dac
+      || s.eventosMaiores.length > 0
+      || s.dcvaHeavy.length > 0;
+}
+
+function decidirHAS(s, pa, risco) {
+  if (!pa) return { tipo:'aguardando', titulo:'Aguardando dados', corpo:'Informe PA, idade e sexo.' };
+  const emUso = s.medicacoes.length > 0;
+  if (!emUso && pa.nivel === 'normal') return { tipo:'reavaliacao', titulo:'PA normal', corpo:'Reforçar MNM. Reavaliação anual.' };
+  if (emUso && pa.nivel === 'normal') return { tipo:'manter', titulo:'PA controlada', corpo:'Manter esquema. MRPA/MAPA em 6-12 meses.' };
+  if (pa.nivel === 'preHA') {
+    if (emUso && s.sbp < 130 && s.dbp < 80) return { tipo:'manter', titulo:'Meta atingida', corpo:'PA na meta. Manter esquema.' };
+    if (!emUso && risco.cat === 'alto') return { tipo:'mnm_3meses', titulo:'MNM por 3 meses', corpo:'Alto risco CV justifica medicação se PA ≥130/80 após 3 meses de MNM. MRPA ao final.' };
+    if (!emUso) return { tipo:'mnm_so', titulo:'MNM apenas', corpo:'Dieta DASH, restrição de sódio, atividade física, peso. Reavaliar em 6-12 meses.' };
+    return { tipo:'intensificar', titulo:'PA fora da meta', corpo:'Intensificar tratamento.' };
+  }
+  if (!emUso) {
+    // Estágio 3 sempre inicia direto + investigar urgência/2ª causa
+    if (pa.nivel === 'estagio3') {
+      return { tipo:'iniciar', titulo:'Iniciar medicação imediatamente', corpo:'Estágio 3 (≥180/110). Avaliar sinais de urgência ou emergência hipertensiva. Iniciar tratamento e investigar HAS secundária.' };
+    }
+    // Estágio 1 ou 2 com comorbidade significativa: confirmação por MRPA não muda conduta, inicia direto
+    if (temComorbidadeQueDispensaMRPA(s)) {
+      const motivo = s.dm ? 'DM' : s.drc ? 'DRC' : s.loa ? 'LOA' : s.icfer ? 'IC com FEr' : s.dac ? 'DAC' : s.eventosMaiores.length > 0 ? 'DCV manifesta' : 'aterosclerose significativa';
+      return { tipo:'iniciar', titulo:'MNM + iniciar medicação', corpo:`Comorbidade presente (${motivo}) indica tratamento direto, sem necessidade de confirmação por MRPA. Meta <130/80 mmHg.` };
+    }
+    // Estágio 1 sem comorbidade: confirmar com MRPA antes de medicar (Figura 3.3 SBC HAS 2025)
+    if (pa.nivel === 'estagio1') {
+      return { tipo:'mrpa_confirmar', titulo:'MRPA para confirmação diagnóstica', corpo:'PA estágio 1 sem comorbidade que indique tratamento direto. Solicitar MRPA por 5 dias para descartar HAS do avental branco antes de iniciar medicação. Manter MNM no intervalo.' };
+    }
+    // Estágio 2 sem comorbidade: a diretriz permite tanto iniciar quanto pedir MRPA. Optar por iniciar é defendável pela magnitude pressórica
+    return { tipo:'iniciar', titulo:'MNM + iniciar medicação', corpo:'Estágio 2 (≥160/100). Iniciar tratamento medicamentoso. MRPA pode ser solicitado em paralelo para caracterização.' };
+  }
+  return { tipo:'intensificar', titulo:'PA fora da meta', corpo:'Intensificar conforme próxima ação.' };
+}
+
+function decidirHASGestante() { /* removed */ }
+
+function proximaAcaoHAS(s, pa, risco, dec) {
+  if (!dec || ['aguardando','reavaliacao','mnm_so','manter','mrpa_confirmar'].includes(dec.tipo)) return null;
+  let acao;
+  if (dec.tipo === 'iniciar') acao = acaoInicialHAS(s, pa, risco);
+  else if (dec.tipo === 'mnm_3meses') acao = { titulo:'Após MNM, se PA ≥130/80', acao:'Iniciar monoterapia: losartana 50 mg/dia VO', nota:'Disponível na Farmácia Popular. Reforçar MNM no intervalo.' };
+  else acao = acaoIntensificarHAS(s, pa, risco);
+  // Cautelas
+  if (acao) {
+    const c = [];
+    if (s.fragil || (s.age && s.age >= 80)) c.push('Paciente idoso ≥80 ou frágil: iniciar com a menor dose, intervalo mínimo de 2 semanas entre incrementos, monitorar hipotensão postural. Meta de PAS <140 mmHg.');
+    if (s.drc && (s.drcEstagio === 'G4' || s.drcEstagio === 'G5')) c.push('DRC ' + s.drcEstagio + ': HCTZ perde eficácia com TFGe <30. Preferir furosemida e referenciar nefrologista.');
+    if ((s.drc && (s.drcEstagio === 'G3b' || s.drcEstagio === 'G4' || s.drcEstagio === 'G5')) || (s.renalCat === 'alto' || s.renalCat === 'muito_alto')) c.push('Monitorar K e creatinina em 1 e 4 semanas após cada ajuste de IECA/BRA ou ARM. Risco de hipercalemia elevado.');
+    if (s.dm && acao.acao && /hidroclorotiazida|HCTZ/i.test(acao.acao)) c.push('Em DM, hidroclorotiazida pode elevar glicemia e reduzir K. Reavaliar HbA1c e potássio em 4-8 semanas.');
+    if (c.length > 0) { acao = {...acao}; acao.nota = (acao.nota ? acao.nota + ' ' : '') + c.join(' '); }
+  }
+  return acao;
+}
+
+function acaoInicialHAS(s, pa, risco) {
+  const idade = s.age || 0;
+  const monoIndicada = (s.fragil || idade >= 80) || (pa.nivel === 'preHA' && risco.cat === 'alto') || (pa.nivel === 'estagio1' && risco.cat === 'baixo');
+  if (s.icfer) return { titulo:'Tripla para ICFEr', acao:'Losartana 50 mg/dia + carvedilol 6,25 mg 12/12h + furosemida 40 mg/dia + espironolactona 25 mg/dia', nota:'Pilares de mortalidade na ICFEr. Carvedilol e espironolactona na REMUME (não FP). Titular gradual.' };
+  if (s.dac) return { titulo:'Esquema com BB obrigatório', acao:'Atenolol 50 mg/dia + losartana 50 mg/dia + hidroclorotiazida 25 mg pela manhã', nota:'BB indicado em DAC pós-IAM. Todos os três na Farmácia Popular.' };
+  const baseIecaBra = (s.dm || s.drc);
+  if (monoIndicada) {
+    if (baseIecaBra) return { titulo:'Monoterapia inicial', acao:'Losartana 50 mg/dia VO', nota:(s.dm?'DM':'DRC') + ' obriga IECA/BRA. Losartana na Farmácia Popular. Monitorar K e creatinina em 1-2 semanas.' };
+    if (idade >= 65 || s.fragil) return { titulo:'Monoterapia inicial', acao:'Anlodipino 5 mg/dia VO à noite', nota:'BCC com boa resposta em idosos. Monitorar edema. REMUME (não FP).' };
+    return { titulo:'Monoterapia inicial', acao:'Losartana 50 mg/dia VO', nota:'BRA de tomada única. Farmácia Popular.' };
+  }
+  if (baseIecaBra) return { titulo:'Associação dupla', acao:'Losartana 50 mg/dia + hidroclorotiazida 25 mg pela manhã', nota:'IECA/BRA obrigatório por DM ou DRC. Ambos na Farmácia Popular.' };
+  return { titulo:'Associação dupla', acao:'Losartana 50 mg/dia + hidroclorotiazida 25 mg pela manhã', nota:'Estratégia padrão SBC 2025 (Figura 7.4). Ambos na Farmácia Popular. MRPA em 4 semanas.' };
+}
+
+function acaoIntensificarHAS(s, pa, risco) {
+  const meds = s.medicacoes;
+  const classes = new Set(meds.map(m => m.classe === 'DIU-alça' ? 'DIU' : m.classe));
+  const n = classes.size;
+  const naoOtim = meds.filter(m => (m.dose || 0) < m.doseMax);
+  
+  if (n === 1) {
+    const m = meds[0];
+    if (m.dose && m.dose < m.doseMax / 2) return { titulo:'Otimizar dose antes de associar', acao:`${m.nome} ${m.dose} mg → ${Math.min(m.doseMax, m.dose*2)} mg/dia`, nota:'Dobrar a dose traz ganho modesto (3-4 mmHg). Reavaliar em 2-4 semanas com MRPA.' };
+    const ativa = m.classe;
+    if (ativa === 'IECA' || ativa === 'BRA') {
+      if (s.dm) return { titulo:'Adicionar BCC (preferível em DM)', acao:'+ Anlodipino 5 mg/dia VO à noite', nota:'IECA/BRA + BCC tem menos efeito metabólico que IECA/BRA + tiazídico.' };
+      return { titulo:'Adicionar tiazídico', acao:'+ Hidroclorotiazida 25 mg pela manhã', nota:'Combinação clássica. Ambos na FP. Monitorar K em 2-4 semanas.' };
+    }
+    if (ativa === 'BCC' || ativa === 'DIU') return { titulo:'Adicionar IECA ou BRA', acao:'+ Losartana 50 mg/dia VO', nota:'Farmácia Popular. Em DRC, monitorar creatinina e K.' };
+    return { titulo:'Associação dupla', acao:'+ HCTZ 25 mg ou anlodipino 5 mg', nota:'Padrão SBC 2025.' };
+  }
+  if (n === 2) {
+    if (naoOtim.length > 0) {
+      const m = naoOtim[0];
+      const novaDose = Math.min(m.doseMax, (m.dose || m.doseMin) * 2);
+      return { titulo:'Otimizar doses antes da tripla', acao:`${m.nome} ${m.dose||m.doseMin} mg → ${novaDose} mg/dia`, nota:'A diretriz orienta otimizar antes de adicionar 3ª classe. MRPA em 4 semanas.' };
+    }
+    if (classes.has('IECA') || classes.has('BRA')) {
+      if (!classes.has('BCC')) return { titulo:'Tripla terapia', acao:'+ Anlodipino 5 mg/dia VO à noite', nota:'Tripla padrão SBC 2025: IECA/BRA + BCC + tiazídico (90% controle esperado).' };
+      if (!classes.has('DIU')) return { titulo:'Tripla terapia', acao:'+ Hidroclorotiazida 25 mg pela manhã', nota:'Tripla padrão SBC 2025. FP cobre.' };
+    }
+    return { titulo:'Tripla terapia', acao:'Adicionar IECA/BRA, BCC ou tiazídico conforme classe ausente', nota:'Padrão SBC 2025: IECA/BRA + BCC + tiazídico.' };
+  }
+  if (n >= 3) {
+    const temHCTZ = meds.some(m => m.princ === 'hctz');
+    const temEspiro = meds.some(m => m.princ === 'espiro');
+    if (naoOtim.length > 0) {
+      const m = naoOtim[0];
+      const novaDose = Math.min(m.doseMax, (m.dose || m.doseMin) * 2);
+      return { titulo:'Otimizar doses antes de 4ª droga', acao:`${m.nome} ${m.dose||m.doseMin} mg → ${novaDose} mg/dia`, nota:'A diretriz exige otimização antes do diagnóstico de HA resistente.' };
+    }
+    if (!temEspiro && n === 3) {
+      let nota = 'Espironolactona como 4ª droga (PATHWAY-2). Monitorar K e creatinina em 1 e 4 semanas. REMUME (não FP).';
+      if (s.drc && ['G3b','G4','G5'].includes(s.drcEstagio)) nota = 'Cautela em DRC G3b+: iniciar 12,5 mg em dias alternados. Considerar nefrologista.';
+      let recomendacao = 'Espironolactona 25 mg/dia VO';
+      if (temHCTZ) recomendacao += ' (alternativa: substituir HCTZ por clortalidona ou indapamida via regulação)';
+      return { titulo:'HA resistente: espironolactona', acao:recomendacao, nota };
+    }
+    return { titulo:'HA resistente verdadeira: referência', acao:'Encaminhar à cardiologia para investigação de HA secundária', nota:'4+ classes incluindo ARM com PA fora da meta = HA resistente verdadeira. Investigar hiperaldosteronismo, estenose renal, AOS, feocromocitoma.' };
+  }
+  return null;
+}
+
+function acaoGestante() { /* removed */ return null; }
+
+
+// ============================================================
+// MOTOR DISLIPIDEMIA — SBC 2025
+// ============================================================
+const METAS_DLP = {
+  baixo:         { ldl:'<115 mg/dL', nhdl:'<145 mg/dL', red:'≥30%' },
+  intermediario: { ldl:'<100 mg/dL', nhdl:'<130 mg/dL', red:'≥30%' },
+  alto:          { ldl:'<70 mg/dL',  nhdl:'<100 mg/dL', red:'≥50%' },
+  muito_alto:    { ldl:'<50 mg/dL',  nhdl:'<80 mg/dL',  red:'≥50%' },
+  extremo:       { ldl:'<40 mg/dL',  nhdl:'<70 mg/dL',  red:'≥50%' }
+};
+
+const CONDUTA_DLP = {
+  baixo: { titulo:'MEV como base', acao:'Mudança de estilo de vida; estatina se LDL ≥30 mg/dL acima da meta', nota:'Se indicada, baixa-moderada intensidade: sinvastatina 20-40 mg (REMUME).' },
+  intermediario: { titulo:'MEV ± estatina', acao:'MEV; estatina de moderada intensidade se LDL ≥30 mg/dL acima da meta', nota:'Sinvastatina 20-40 mg (REMUME). Se não atingir meta, intensificar ou associar ezetimiba (alto custo).' },
+  alto: { titulo:'Estatina alta + ezetimiba desde o início', acao:'SBC 2025: estatina de alta intensidade + ezetimiba 10 mg como terapia inicial (atorvastatina 40-80 mg ou rosuvastatina 20-40 mg). Alternativa: estatina alta isolada com meta ≥50% de redução.', nota:'Atorvastatina/rosuvastatina e ezetimiba via regulação ou alto custo. Como ponte na APS, iniciar sinvastatina 40 mg (REMUME) enquanto solicita regulação. Verificar TGP, CK basais.' },
+  muito_alto: { titulo:'Estatina alta + ezetimiba + considerar anti-PCSK9', acao:'SBC 2025: estatina alta + ezetimiba inicial. Anti-PCSK9 (evolocumabe/alirocumabe) ou inclisirana se meta não atingida.', nota:'Atorvastatina 80 / rosuvastatina 40 + ezetimiba 10 mg via regulação. PCSK9 e inclisirana via alto custo / especialista. Bempedoico se intolerância à estatina.' },
+  extremo: { titulo:'Estatina alta + ezetimiba + anti-PCSK9 desde o início', acao:'SBC 2025: terapia tripla inicial. Estatina alta + ezetimiba 10 mg + anti-PCSK9 (evolocumabe/alirocumabe).', nota:'Encaminhamento à cardiologia para acesso ao componente especializado. Meta LDL <40 mg/dL e redução ≥50%. Inclisirana alternativa aos monoclonais. Evinacumabe se HFhc refratária.' }
+};
+
+function estratificarDLP(s, prevent) {
+  const razoes = [];
+  let cat = 'pendente';
+  
+  // Idade limite SBC dislipidemia para DM
+  const ehMulher = s.sex === 'M';
+  const ehHomem = s.sex === 'H';
+  
+  // Contar EAR/EMAR contando o submódulo renal
+  let earCount = s.ear.length, emarCount = s.emar.length;
+  if (s.renalCat === 'alto') earCount++;
+  if (s.renalCat === 'muito_alto') emarCount++;
+  
+  // PASSO 1: Evento prévio
+  const eventos = s.eventosMaiores;
+  if (eventos.length > 0) {
+    const evNomes = eventos.map(e => lbl(e.dataset.key));
+    const ehExtremo = eventos.length >= 2 || (eventos.length >= 1 && s.condAR.length >= 2);
+    if (ehExtremo) {
+      cat = 'extremo';
+      if (eventos.length >= 2) razoes.push('Múltiplos eventos CV maiores: ' + evNomes.join(', '));
+      else razoes.push(`1 evento maior (${evNomes.join(', ')}) + ${s.condAR.length} condições de alto risco`);
+    } else {
+      cat = 'muito_alto';
+      razoes.push('Evento CV maior prévio: ' + evNomes.join(', '));
+    }
+    return { cat, razoes, prevent: prevent.ok ? prevent.value : null };
+  }
+  
+  // PASSO 2: Aterosclerose significativa (heavy)
+  if (s.dcvaHeavy.length > 0) {
+    cat = 'muito_alto';
+    razoes.push('Aterosclerose significativa: ' + s.dcvaHeavy.map(e => lbl(e.dataset.key)).join(', '));
+    return { cat, razoes, prevent: prevent.ok ? prevent.value : null };
+  }
+  
+  // PASSO 3: DM com fluxo próprio
+  if (s.dm && s.dmTipo) {
+    const limiar = ehHomem ? 50 : 56;
+    if (emarCount >= 1 || earCount >= 3) {
+      cat = 'muito_alto';
+      const m = [];
+      if (emarCount >= 1) {
+        const nomes = s.emar.map(e => lbl(e.dataset.key));
+        if (s.renalCat === 'muito_alto') nomes.push('EMAR renal');
+        m.push('EMAR (' + nomes.join(', ') + ')');
+      }
+      if (earCount >= 3) {
+        const nomes = s.ear.map(e => lbl(e.dataset.key));
+        if (s.renalCat === 'alto') nomes.push('EAR renal');
+        m.push(earCount + ' EAR (' + nomes.join(', ') + ')');
+      }
+      razoes.push(`${s.dmTipo} com ${m.join(' e ')}`);
+    } else if (earCount >= 1) {
+      cat = 'alto';
+      const nomes = s.ear.map(e => lbl(e.dataset.key));
+      if (s.renalCat === 'alto') nomes.push('EAR renal');
+      razoes.push(`${s.dmTipo} com ${earCount} EAR (${nomes.join(', ')})`);
+    } else if (s.age && s.age >= limiar && (ehHomem || ehMulher)) {
+      cat = 'alto';
+      razoes.push(`${s.dmTipo} em ${ehHomem ? 'homem' : 'mulher'} ≥${limiar} anos, sem EAR/EMAR`);
+    } else if (s.age && s.age < limiar && (ehHomem || ehMulher)) {
+      cat = 'intermediario';
+      razoes.push(`${s.dmTipo} em ${ehHomem ? 'homem' : 'mulher'} <${limiar} anos, sem EAR/EMAR`);
+    } else {
+      cat = 'intermediario';
+      razoes.push(`${s.dmTipo} sem EAR/EMAR, idade/sexo não informados`);
+    }
+    return { cat, razoes, prevent: prevent.ok ? prevent.value : null };
+  }
+  
+  // PASSO 4: Critérios diretos de Alto
+  if (s.altoDireto.length > 0) {
+    cat = 'alto';
+    razoes.push('Critério direto de Alto: ' + s.altoDireto.map(e => lbl(e.dataset.key)).join(', '));
+    return { cat, razoes, prevent: prevent.ok ? prevent.value : null };
+  }
+  
+  // PASSO 5: PREVENT + agravantes
+  if (prevent.ok) {
+    const r = prevent.value;
+    const agravNomes = s.agrav.map(a => lbl(a.dataset.key));
+    if (r >= 20) {
+      cat = 'alto';
+      razoes.push(`PREVENT ${r.toFixed(1)}% (≥20%)`);
+    } else if (r >= 5) {
+      if (s.agrav.length > 0) {
+        cat = 'alto';
+        razoes.push(`PREVENT ${r.toFixed(1)}% reclassificado para Alto por agravante(s): ${agravNomes.join(', ')}`);
+      } else {
+        cat = 'intermediario';
+        razoes.push(`PREVENT ${r.toFixed(1)}% (5 a <20%), sem agravantes`);
+      }
+    } else {
+      if (s.agrav.length > 0 || s.ldl160) {
+        cat = 'intermediario';
+        const m = [];
+        if (s.ldl160) m.push('LDL 160-189 mg/dL');
+        if (s.agrav.length > 0) m.push('agravante(s): ' + agravNomes.join(', '));
+        razoes.push(`PREVENT ${r.toFixed(1)}% reclassificado por ${m.join(' e ')}`);
+      } else {
+        cat = 'baixo';
+        razoes.push(`PREVENT ${r.toFixed(1)}% (<5%), sem agravantes nem LDL 160-189`);
+      }
+    }
+    return { cat, razoes, prevent: r };
+  }
+  
+  return { cat:'pendente', razoes:[], prevent:null };
+}
+
+
+// ============================================================
+// GERAÇÃO #A E #P
+// ============================================================
+function gerarA(s, pa, riscoHAS, dlpResult, decHAS) {
+  if (!s.age || !pa) return '—';
+  
+  const linhas = [];
+  let n = 1;
+  const emUso = s.medicacoes.length > 0;
+  
+  // Linha 1: Hipertensão
+  if (decHAS && decHAS.tipo === 'mrpa_confirmar') {
+    // Estágio 1 sem comorbidade: ainda não temos diagnóstico, aguardando MRPA
+    let txt = `Pressão arterial elevada no consultório (${s.sbp}/${s.dbp} mmHg, ${pa.label.replace('HA ','').toLowerCase()}), sob investigação diagnóstica com MRPA`;
+    const labelsRisco = { baixo:'baixo risco CV', limitrofe:'risco CV limítrofe', intermediario:'risco CV intermediário', alto:'alto risco CV' };
+    if (labelsRisco[riscoHAS.cat]) {
+      let r = labelsRisco[riscoHAS.cat];
+      if (riscoHAS.prevent !== null && riscoHAS.prevent !== undefined) r += ` (PREVENT ${riscoHAS.prevent.toFixed(1)}%)`;
+      txt += ', ' + r;
+    }
+    txt += '. CID R03.0.';
+    linhas.push(`${n++}. ${txt}`);
+  } else if (emUso || pa.nivel === 'estagio1' || pa.nivel === 'estagio2' || pa.nivel === 'estagio3') {
+    // HAS estabelecida
+    const partes = [];
+    if (emUso) {
+      if (s.sbp < 130 && s.dbp < 80) partes.push('Hipertensão arterial sistêmica, controlada');
+      else if (pa.nivel === 'estagio1' || pa.nivel === 'estagio2' || pa.nivel === 'estagio3') partes.push(`Hipertensão arterial sistêmica, ${pa.label.replace('HA ','').toLowerCase()}`);
+      else partes.push('Hipertensão arterial sistêmica, parcialmente controlada');
+    } else {
+      // Novo diagnóstico: padronizar como prosa formal
+      if (pa.nivel === 'estagio1' || pa.nivel === 'estagio2' || pa.nivel === 'estagio3') {
+        partes.push(`Hipertensão arterial sistêmica, ${pa.label.replace('HA ','').toLowerCase()}`);
+      } else {
+        partes.push(pa.label);
+      }
+    }
+    // Risco CV pela HAS
+    const labelsRisco = { baixo:'baixo risco CV', limitrofe:'risco CV limítrofe', intermediario:'risco CV intermediário', alto:'alto risco CV' };
+    if (labelsRisco[riscoHAS.cat]) {
+      let txt = labelsRisco[riscoHAS.cat];
+      if (riscoHAS.prevent !== null && riscoHAS.prevent !== undefined) txt += ` (PREVENT ASCVD 10 anos ${riscoHAS.prevent.toFixed(1)}%)`;
+      else if (riscoHAS.cat === 'alto' && riscoHAS.via === 'direto') {
+        const m = (riscoHAS.motivos||[])[0] || '';
+        if (m) {
+          const partesM = m.split(':');
+          const conteudo = partesM.length > 1 ? partesM.slice(1).join(':').trim() : partesM[0];
+          txt += ` (${conteudo})`;
+        }
+      }
+      partes.push(txt);
+    }
+    // Estado terapêutico
+    if (emUso) {
+      const nClasses = new Set(s.medicacoes.map(m => m.classe === 'DIU-alça' ? 'DIU' : m.classe)).size;
+      const labelsTx = {1:'monoterapia', 2:'associação dupla', 3:'associação tripla', 4:'quatro classes', 5:'cinco classes'};
+      partes.push('em ' + (labelsTx[nClasses] || nClasses + ' classes'));
+    } else if (pa.nivel !== 'preHA' && pa.nivel !== 'normal') {
+      partes.push('sem tratamento medicamentoso prévio');
+    }
+    let linha = partes.join(', ') + '.';
+    linha = linha.charAt(0).toUpperCase() + linha.slice(1);
+    linha += ' CID I10.';
+    linhas.push(`${n++}. ${linha}`);
+  } else if (pa.nivel === 'preHA') {
+    let txt = pa.label;
+    const labelsRisco = { baixo:'baixo risco CV', limitrofe:'limítrofe', intermediario:'intermediário', alto:'alto risco CV' };
+    if (labelsRisco[riscoHAS.cat]) {
+      txt += ', ' + labelsRisco[riscoHAS.cat];
+      if (riscoHAS.prevent !== null && riscoHAS.prevent !== undefined) txt += ` (PREVENT ${riscoHAS.prevent.toFixed(1)}%)`;
+      else if (riscoHAS.cat === 'alto' && riscoHAS.via === 'direto') {
+        const m = (riscoHAS.motivos||[])[0] || '';
+        if (m) {
+          const partesM = m.split(':');
+          const conteudo = partesM.length > 1 ? partesM.slice(1).join(':').trim() : partesM[0];
+          txt += ` (${conteudo})`;
+        }
+      }
+    }
+    txt += '.';
+    txt = txt.charAt(0).toUpperCase() + txt.slice(1);
+    if (pa.cid) txt += ` CID ${pa.cid}.`;
+    linhas.push(`${n++}. ${txt}`);
+  }
+  
+  // Linha 2: Dislipidemia
+  if (dlpResult && dlpResult.cat !== 'pendente') {
+    const labels = { baixo:'baixo risco CV', intermediario:'risco CV intermediário', alto:'alto risco CV', muito_alto:'muito alto risco CV', extremo:'risco CV extremo' };
+    let linha = `Dislipidemia, ${labels[dlpResult.cat]} pela diretriz de dislipidemia`;
+    // PREVENT só aparece se foi o critério determinante (razão menciona PREVENT)
+    if (dlpResult.prevent !== null && dlpResult.razoes.length > 0 && dlpResult.razoes[0].includes('PREVENT')) {
+      linha += ` (PREVENT ${dlpResult.prevent.toFixed(1)}%)`;
+    }
+    linha += '. CID E78.5.';
+    linhas.push(`${n++}. ${linha}`);
+  }
+  
+  // Linha 3: comorbidades (DM, DRC) — uma linha resumo
+  const comorb = [];
+  if (s.dm && s.dmTipo) comorb.push(`${s.dmTipo}${s.emar.length>0 || s.renalCat==='muito_alto' ? ' com EMAR' : (s.ear.length>0 || s.renalCat==='alto' ? ' com EAR' : '')}` + ' (CID E11.9)');
+  if (s.drc && s.drcEstagio) comorb.push(`DRC ${s.drcEstagio} ${s.drcAlb} (CID N18)`);
+  if (comorb.length > 0) {
+    linhas.push(`${n++}. ${comorb.join('. ').charAt(0).toUpperCase() + comorb.join('. ').slice(1)}.`);
+  }
+  
+  return linhas.join('\n');
+}
+
+function gerarPHAS(s, pa, riscoHAS, decHAS, acaoHAS) {
+  if (!s.age || !pa) return '—';
+  
+  const itens = [];
+  let i = 1;
+  
+  if (acaoHAS) {
+    let txt = '';
+    if (decHAS.tipo === 'iniciar') txt = `Iniciado tratamento anti-hipertensivo: ${acaoHAS.acao}.`;
+    else if (decHAS.tipo === 'intensificar') txt = `Otimizado tratamento anti-hipertensivo: ${acaoHAS.acao}.`;
+    else if (decHAS.tipo === 'mnm_3meses') txt = 'Mantidas medidas não medicamentosas por 3 meses. Reavaliação com MRPA ao final. Se PA persistir ≥130/80 mmHg, iniciar tratamento medicamentoso.';
+    else txt = acaoHAS.acao + '.';
+    if (['intensificar','iniciar'].includes(decHAS.tipo)) txt += ' Decisão baseada na Figura 7.4 da Diretriz Brasileira de HAS 2025 (SBC/SBN/SBH).';
+    itens.push(`${i++}. ${txt}`);
+  } else if (decHAS.tipo === 'manter') {
+    itens.push(`${i++}. Mantido esquema anti-hipertensivo atual; PA dentro da meta.`);
+  } else if (decHAS.tipo === 'mnm_so') {
+    itens.push(`${i++}. Orientadas medidas não medicamentosas: dieta DASH com restrição de sódio (<2 g/dia), atividade física aeróbica de pelo menos 150 min/semana, perda ponderal se IMC ≥25, redução do consumo de álcool, cessação tabágica se aplicável.`);
+  } else if (decHAS.tipo === 'reavaliacao') {
+    itens.push(`${i++}. Reforçadas medidas não medicamentosas. Reavaliação pressórica anual.`);
+  } else if (decHAS.tipo === 'mrpa_confirmar') {
+    itens.push(`${i++}. Solicitada MRPA por 5 dias úteis (3 medidas matinais e 3 vespertinas) para confirmação diagnóstica de hipertensão arterial, conforme Figura 3.3 da Diretriz Brasileira de HAS 2025 (SBC/SBN/SBH). Considerar MAPA 24h se disponibilidade. Decisão de iniciar farmacoterapia será definida após retorno com o exame.`);
+    itens.push(`${i++}. Reforçadas medidas não medicamentosas no intervalo: dieta DASH com restrição de sódio (<2 g/dia), atividade física aeróbica de pelo menos 150 min/semana, perda ponderal se IMC ≥25, redução do consumo de álcool, cessação tabágica se aplicável.`);
+    itens.push(`${i++}. Solicitados exames de avaliação inicial: hemograma, ureia, creatinina (com TFGe), Na, K, glicemia de jejum, HbA1c, perfil lipídico, TSH, ácido úrico, EAS, ECG de repouso.`);
+    itens.push(`${i++}. Retorno em 4 a 6 semanas com resultado da MRPA e exames.`);
+    return itens.join('\n');
+  }
+  
+  if (acaoHAS && acaoHAS.nota) {
+    itens.push(`${i++}. Considerações farmacológicas: ${acaoHAS.nota}`);
+  }
+  
+  if (['estagio1','estagio2','estagio3'].includes(pa.nivel) || (pa.nivel === 'preHA' && riscoHAS.cat === 'alto')) {
+    if (!['mnm_so','reavaliacao','manter'].includes(decHAS.tipo)) {
+      itens.push(`${i++}. Reforçadas medidas não medicamentosas: dieta com restrição de sódio (<2 g/dia), padrão DASH, atividade física 150 min/semana, controle ponderal, moderação do álcool.`);
+    }
+  }
+  
+  if (decHAS.tipo === 'iniciar') {
+    const exames = ['hemograma','ureia, creatinina (com TFGe)','Na, K','glicemia de jejum, HbA1c','perfil lipídico'];
+    if (s.dm || s.drc) exames.push('relação albumina/creatinina urinária');
+    exames.push('TSH','ácido úrico','EAS','ECG de repouso');
+    itens.push(`${i++}. Solicitados exames de avaliação inicial: ${exames.join(', ')}.`);
+  }
+  
+  if (pa.nivel === 'estagio3' && s.medicacoes.length === 0) {
+    itens.push(`${i++}. Considerar investigação de causas secundárias de HA (estágio 3 ao diagnóstico).`);
+  }
+  
+  if (decHAS.tipo === 'iniciar' || decHAS.tipo === 'intensificar') {
+    itens.push(`${i++}. Solicitada MRPA para reavaliação em 4 semanas, conforme protocolo da SMS Curitiba.`);
+  }
+  
+  let retorno = null;
+  if (['iniciar','intensificar'].includes(decHAS.tipo)) retorno = 4;
+  else if (decHAS.tipo === 'mnm_3meses') retorno = 12;
+  else if (['mnm_so','manter','reavaliacao'].includes(decHAS.tipo)) retorno = 'anual';
+  if (retorno === 'anual') itens.push(`${i++}. Retorno em 12 meses ou antes se intercorrência.`);
+  else if (retorno) itens.push(`${i++}. Retorno em ${retorno} semanas para reavaliação.`);
+  
+  return itens.join('\n');
+}
+
+function gerarPDLP(s, dlpResult) {
+  if (!dlpResult || dlpResult.cat === 'pendente') return '—';
+  
+  const itens = [];
+  let i = 1;
+  const conduta = CONDUTA_DLP[dlpResult.cat];
+  const metas = METAS_DLP[dlpResult.cat];
+  
+  // Item 1: conduta principal
+  if (s.emUsoEstatina) {
+    itens.push(`${i++}. Mantida estatina em uso; reavaliar adequação à categoria de risco (alvo de LDL-c ${metas.ldl}). ${conduta.acao}`);
+  } else {
+    itens.push(`${i++}. ${conduta.acao}`);
+  }
+  
+  // Item 2: nota
+  itens.push(`${i++}. Considerações: ${conduta.nota}`);
+  
+  // Item 3: metas
+  itens.push(`${i++}. Metas terapêuticas (SBC 2025): LDL-c ${metas.ldl}, não-HDL-c ${metas.nhdl}, redução percentual ${metas.red} do valor basal.`);
+  
+  // Item 4: MEV
+  itens.push(`${i++}. Reforço da mudança de estilo de vida: dieta tipo mediterrânea ou DASH, redução de gordura saturada, atividade física aeróbica regular, perda ponderal se IMC ≥25, cessação tabágica.`);
+  
+  // Item 5: monitoramento
+  itens.push(`${i++}. Solicitados perfil lipídico, TGP e CK basais. Reavaliação do perfil lipídico em 4-12 semanas após início ou ajuste; depois a cada 3-12 meses conforme controle.`);
+  
+  // Item 6: encaminhamento para casos especiais
+  if (dlpResult.cat === 'muito_alto' || dlpResult.cat === 'extremo') {
+    itens.push(`${i++}. Solicitado parecer/encaminhamento à cardiologia para avaliação de acesso à medicação especializada (ezetimiba, anti-PCSK9, inclisirana) via componente especializado da assistência farmacêutica.`);
+  }
+  
+  return itens.join('\n');
+}
+
+
+// ============================================================
+// RENDERIZAÇÃO
+// ============================================================
+const CAT_LABELS = { baixo:'Baixo risco', limitrofe:'Limítrofe', intermediario:'Intermediário', alto:'Alto risco', muito_alto:'Muito alto', extremo:'Extremo', indef:'Não estratificado', pendente:'Aguardando' };
+const CAT_CLASSES = { baixo:'cat-baixo', limitrofe:'cat-limitrofe', intermediario:'cat-intermediario', alto:'cat-alto', muito_alto:'cat-muito_alto', extremo:'cat-extremo', indef:'cat-indef', pendente:'cat-indef' };
+
+// ============================================================
+// AUTO-TICKS: marcações inferidas automaticamente
+// ============================================================
+let _autoTicked = { fragil:false, idade65:false };
+
+function onIdadeChange() {
+  const idade = +document.getElementById('age').value || 0;
+  
+  // Idade ≥80 → marcar idoso frágil (motor já trata, mas tornar visível)
+  const cbFragil = document.getElementById('esp-fragil');
+  const labelFragil = cbFragil ? cbFragil.closest('.check-item') : null;
+  if (idade >= 80) {
+    if (!cbFragil.checked) { cbFragil.checked = true; _autoTicked.fragil = true; }
+    if (labelFragil) labelFragil.classList.add('auto-ticked');
+  } else if (_autoTicked.fragil) {
+    cbFragil.checked = false;
+    _autoTicked.fragil = false;
+    if (labelFragil) labelFragil.classList.remove('auto-ticked');
+  }
+  
+  // Idade ≥65 → marcar condição AR "Idade ≥65 anos" (só relevante se evento marcado, mas marcamos sempre)
+  const cbIdade65 = document.querySelector('input.cond-ar[data-key="idade65"]');
+  const labelIdade65 = cbIdade65 ? cbIdade65.closest('.check-item') : null;
+  if (idade >= 65) {
+    if (!cbIdade65.checked) { cbIdade65.checked = true; _autoTicked.idade65 = true; }
+    if (labelIdade65) labelIdade65.classList.add('auto-ticked');
+  } else if (_autoTicked.idade65) {
+    cbIdade65.checked = false;
+    _autoTicked.idade65 = false;
+    if (labelIdade65) labelIdade65.classList.remove('auto-ticked');
+  }
+}
+
+function onEgfrChange() {
+  // Sem auto-tick para DRC porque exige cronicidade ≥3 meses (diagnóstico clínico).
+  // Apenas o sanity check sinaliza eventualmente.
+}
+
+// Se usuário desmarca manualmente um item auto-ticked, respeitar
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'esp-fragil' && !e.target.checked) _autoTicked.fragil = false;
+  if (e.target.matches && e.target.matches('input.cond-ar[data-key="idade65"]') && !e.target.checked) _autoTicked.idade65 = false;
+  if (e.target.classList) {
+    const item = e.target.closest('.check-item');
+    if (item && !e.target.checked) item.classList.remove('auto-ticked');
+  }
+});
+
+// ============================================================
+// SANITY CHECKS (avisos de inputs incoerentes)
+// ============================================================
+function validarInputs(s) {
+  const warnings = [];
+  
+  // PAS < PAD: erro de digitação certo
+  if (s.sbp && s.dbp && s.sbp <= s.dbp) {
+    warnings.push({ tipo:'error', msg:`Pressão sistólica (${s.sbp}) menor ou igual à diastólica (${s.dbp}). Verifique a digitação.` });
+  }
+  
+  // HDL > CT: impossível
+  if (s.totalChol && s.hdl && s.hdl >= s.totalChol) {
+    warnings.push({ tipo:'error', msg:`HDL (${s.hdl}) maior ou igual ao colesterol total (${s.totalChol}). Verifique a digitação.` });
+  }
+  
+  // HDL muito baixo ou muito alto (sanidade)
+  if (s.hdl && (s.hdl < 15 || s.hdl > 110)) {
+    warnings.push({ tipo:'warn', msg:`HDL = ${s.hdl} mg/dL está fora da faixa habitual (15 a 110). Confirme o valor.` });
+  }
+  
+  // CT muito baixo ou muito alto
+  if (s.totalChol && (s.totalChol < 70 || s.totalChol > 500)) {
+    warnings.push({ tipo:'warn', msg:`Colesterol total = ${s.totalChol} mg/dL fora da faixa habitual. Confirme o valor.` });
+  }
+  
+  // Em estatina + LDL ≥190 marcado
+  if (s.emUsoEstatina && s.altoDireto.some(c => c.dataset.key === 'ldl190')) {
+    warnings.push({ tipo:'warn', msg:'Paciente em uso de estatina com LDL ≥190 marcado. Considerar hipercolesterolemia familiar refratária, má aderência ou dose insuficiente.' });
+  }
+  
+  // eGFR < 60 mas DRC não marcado: sugerir
+  if (s.egfr && s.egfr < 60 && !s.drc) {
+    let estagioSugerido = '';
+    if (s.egfr >= 45) estagioSugerido = 'G3a';
+    else if (s.egfr >= 30) estagioSugerido = 'G3b';
+    else if (s.egfr >= 15) estagioSugerido = 'G4';
+    else estagioSugerido = 'G5';
+    warnings.push({ tipo:'warn', msg:`TFGe ${s.egfr} sugere DRC ${estagioSugerido} (se persistente por ≥3 meses). Considere marcar Doença Renal Crônica e o estágio correspondente.` });
+  }
+  
+  // TFGe alto mas DRC estágio avançado marcado
+  if (s.egfr && s.drc && s.drcEstagio) {
+    const incoerente = (
+      (s.drcEstagio === 'G5' && s.egfr >= 15) ||
+      (s.drcEstagio === 'G4' && (s.egfr < 15 || s.egfr >= 30)) ||
+      (s.drcEstagio === 'G3b' && (s.egfr < 30 || s.egfr >= 45)) ||
+      (s.drcEstagio === 'G3a' && (s.egfr < 45 || s.egfr >= 60)) ||
+      ((s.drcEstagio === 'G1' || s.drcEstagio === 'G2') && s.egfr < 60)
+    );
+    if (incoerente) {
+      warnings.push({ tipo:'warn', msg:`TFGe ${s.egfr} mL/min não bate com estágio DRC selecionado (${s.drcEstagio}). Verifique.` });
+    }
+  }
+  
+  // PREVENT fora-faixa silencioso (idade <30 ou >79)
+  if (s.age && (s.age < 30 || s.age > 79) && !s.dm && s.eventosMaiores.length === 0 && s.altoDireto.length === 0) {
+    warnings.push({ tipo:'info', msg:`PREVENT-ASCVD validado para 30 a 79 anos. Idade ${s.age}: o painel mostra estratificação por critérios clínicos diretos, não por escore.` });
+  }
+  
+  return warnings;
+}
+
+function renderSanityChecks(s) {
+  const panel = document.getElementById('sanity-panel');
+  const warnings = validarInputs(s);
+  if (warnings.length === 0) {
+    panel.style.display = 'none';
+    return;
+  }
+  const temErro = warnings.some(w => w.tipo === 'error');
+  panel.className = 'sanity-panel' + (temErro ? ' error' : '');
+  const titulo = temErro ? 'Atenção: dados incoerentes' : 'Verifique';
+  panel.innerHTML = `<div class="sanity-title">${titulo}</div><ul>${warnings.map(w => `<li>${w.msg}</li>`).join('')}</ul>`;
+  panel.style.display = 'block';
+}
+
+// ============================================================
+// EXPLICAÇÃO DETALHADA ("Por quê?")
+// ============================================================
+function toggleExplica(card) {
+  const box = document.getElementById(card + '-explica');
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+function explicaHAS(s, pa, riscoHAS) {
+  if (!pa) return 'Aguardando dados.';
+  const itens = [];
+  
+  itens.push(`<div class="explica-titulo">Classificação da PA</div>`);
+  itens.push(`<ul><li>PA ${s.sbp}/${s.dbp} mmHg → <strong>${pa.label}</strong>. <span class="ref">Tabela 3.1, SBC HAS 2025</span></li></ul>`);
+  
+  itens.push(`<div class="explica-titulo" style="margin-top:10px">Estratificação de risco CV</div>`);
+  const motivosRisco = [];
+  if (riscoHAS.via === 'direto') {
+    motivosRisco.push(`<li><strong>Alto risco direto</strong> pela Etapa 1 da Figura 4.3:`);
+    if (riscoHAS.motivos && riscoHAS.motivos.length) {
+      motivosRisco.push(`<ul>${riscoHAS.motivos.map(m => `<li>${m}</li>`).join('')}</ul>`);
+    }
+    motivosRisco.push(`</li>`);
+  } else if (riscoHAS.via === 'prevent') {
+    motivosRisco.push(`<li>Sem critério direto de alto risco. Estratificação pelo PREVENT-ASCVD 10 anos.</li>`);
+    if (riscoHAS.motivos && riscoHAS.motivos.length) {
+      motivosRisco.push(`<ul>${riscoHAS.motivos.map(m => `<li>${m}</li>`).join('')}</ul>`);
+    }
+    motivosRisco.push(`<li><span class="ref">Etapa 2 da Figura 4.3, SBC HAS 2025</span></li>`);
+  } else {
+    motivosRisco.push(`<li>Sem critério direto. PREVENT não calculável (dados insuficientes ou idade fora de 30-79).</li>`);
+  }
+  itens.push(`<ul>${motivosRisco.join('')}</ul>`);
+  
+  itens.push(`<div class="explica-titulo" style="margin-top:10px">Meta pressórica</div>`);
+  let metaJust = '';
+  if (s.fragil || (s.age && s.age >= 80)) metaJust = `PAS <140 mmHg, ao menor valor tolerado. Idoso ≥80 anos ou frágil reduz a tolerância à hipotensão. <span class="ref">SBC HAS 2025</span>`;
+  else metaJust = `PA <130/80 mmHg como meta padrão para todos os adultos com diagnóstico de HAS. <span class="ref">Figura 7.1, SBC HAS 2025</span>`;
+  itens.push(`<ul><li>${metaJust}</li></ul>`);
+  
+  return itens.join('');
+}
+
+function explicaDLP(s, dlpResult) {
+  if (!dlpResult || dlpResult.cat === 'pendente') return 'Aguardando dados suficientes para estratificar.';
+  const itens = [];
+  
+  itens.push(`<div class="explica-titulo">Categoria de risco: ${dlpResult.cat.toUpperCase()}</div>`);
+  if (dlpResult.razoes && dlpResult.razoes.length) {
+    itens.push(`<ul>${dlpResult.razoes.map(r => `<li>${r}</li>`).join('')}</ul>`);
+  }
+  
+  // Referência à tabela conforme a via
+  let ref = '';
+  if (dlpResult.cat === 'extremo') ref = 'Tabela 4.2 (Risco Extremo) – SBC Dislipidemia 2025';
+  else if (dlpResult.cat === 'muito-alto') ref = 'Capítulo 4 – Tabelas 4.5 a 4.7 conforme presença de DM, evento prévio ou DCVA significativa';
+  else if (dlpResult.cat === 'alto') ref = 'Tabelas 4.5 (DM) e 4.6 (critérios clínicos) – SBC Dislipidemia 2025';
+  else if (dlpResult.cat === 'intermediario') ref = 'PREVENT 5 a <20% ou agravantes da Tabela 4.3 reclassificando para cima';
+  else if (dlpResult.cat === 'baixo') ref = 'PREVENT <5% sem agravantes – SBC Dislipidemia 2025';
+  if (ref) itens.push(`<div style="margin-top:8px"><span class="ref">${ref}</span></div>`);
+  
+  itens.push(`<div class="explica-titulo" style="margin-top:10px">Meta lipídica</div>`);
+  const m = METAS_DLP[dlpResult.cat];
+  if (m) itens.push(`<ul><li>LDL-c <strong>${m.ldl}</strong>, não-HDL <strong>${m.nhdl}</strong>, redução ${m.red} em relação ao basal.</li></ul>`);
+  
+  return itens.join('');
+}
+
+function renderExplica(s, pa, riscoHAS, dlpResult) {
+  document.getElementById('has-explica').innerHTML = explicaHAS(s, pa, riscoHAS);
+  document.getElementById('dlp-explica').innerHTML = explicaDLP(s, dlpResult);
+}
+
+function recompute() {
+  const s = readState();
+  const pa = classificarPA(s.sbp, s.dbp);
+  const prevent = calcularPrevent(s);
+  const riscoHAS = estratificarRiscoHAS(s, prevent);
+  const decHAS = decidirHAS(s, pa, riscoHAS);
+  const acaoHAS = proximaAcaoHAS(s, pa, riscoHAS, decHAS);
+  const dlpResult = estratificarDLP(s, prevent);
+  
+  // === Card HAS ===
+  if (pa) {
+    document.getElementById('has-pa-label').innerHTML = pa.label.replace(/(\bestágio\b)/i, '<em>$1</em>');
+    document.getElementById('has-pa-value').textContent = `PA ${s.sbp}/${s.dbp} mmHg`;
+  } else {
+    document.getElementById('has-pa-label').innerHTML = 'Aguardando <em>dados</em>';
+    document.getElementById('has-pa-value').textContent = '—';
+  }
+  document.getElementById('has-risco-badge').innerHTML = pa ? `<span class="cat-badge ${CAT_CLASSES[riscoHAS.cat]}">${CAT_LABELS[riscoHAS.cat]}</span>` : '';
+  
+  if (prevent.ok) document.getElementById('has-prevent-display').innerHTML = `PREVENT-ASCVD 10y: <strong>${prevent.value.toFixed(1)}%</strong>`;
+  else if (riscoHAS.cat === 'alto' && riscoHAS.via === 'direto') document.getElementById('has-prevent-display').innerHTML = '<strong>Alto risco direto</strong> (Etapa 1 da Figura 4.3)';
+  else document.getElementById('has-prevent-display').innerHTML = 'PREVENT: <strong>—</strong>';
+  
+  const ulHAS = document.getElementById('has-justif');
+  ulHAS.innerHTML = '';
+  (riscoHAS.motivos || []).forEach(m => { const li = document.createElement('li'); li.textContent = m; ulHAS.appendChild(li); });
+  if ((!riscoHAS.motivos || riscoHAS.motivos.length === 0) && riscoHAS.via === 'fora-faixa') {
+    const li = document.createElement('li');
+    li.textContent = (s.age && s.age >= 80) ? 'Idade ≥80 · Quadro 4.6' : 'Dados insuficientes para PREVENT';
+    li.style.color = 'var(--ink-faint)';
+    ulHAS.appendChild(li);
+  }
+  
+  document.getElementById('has-meta').textContent = pa ? metaPAHAS(s) : '—';
+  
+  if (decHAS) document.getElementById('has-decisao').innerHTML = `<strong>${decHAS.titulo}.</strong> ${decHAS.corpo}`;
+  
+  const acHASDiv = document.getElementById('has-acao');
+  if (acaoHAS) {
+    acHASDiv.innerHTML = `<div class="action-card"><div class="action-title">${acaoHAS.titulo}</div><div class="action-med">${acaoHAS.acao}</div>${acaoHAS.nota ? `<div class="action-note">${acaoHAS.nota}</div>` : ''}</div>`;
+  } else {
+    acHASDiv.innerHTML = '';
+  }
+  
+  // === Card Dislipidemia ===
+  document.getElementById('dlp-cat-label').innerHTML = (dlpResult.cat === 'pendente') ? 'Aguardando <em>dados</em>' : CAT_LABELS[dlpResult.cat];
+  document.getElementById('dlp-risco-badge').innerHTML = (dlpResult.cat !== 'pendente') ? `<span class="cat-badge ${CAT_CLASSES[dlpResult.cat]}">${CAT_LABELS[dlpResult.cat]}</span>` : '';
+  
+  const ulDLP = document.getElementById('dlp-justif');
+  ulDLP.innerHTML = '';
+  if (dlpResult.razoes.length === 0) {
+    const li = document.createElement('li');
+    li.textContent = 'Preencha os dados nas seções ao lado.';
+    li.style.color = 'var(--ink-faint)';
+    ulDLP.appendChild(li);
+  } else {
+    dlpResult.razoes.forEach(r => { const li = document.createElement('li'); li.textContent = r; ulDLP.appendChild(li); });
+  }
+  
+  const metasDLP = document.getElementById('dlp-metas');
+  if (dlpResult.cat !== 'pendente') {
+    const m = METAS_DLP[dlpResult.cat];
+    metasDLP.innerHTML = `<strong>LDL-c:</strong> ${m.ldl} · <strong>Não-HDL:</strong> ${m.nhdl} · <strong>Redução:</strong> ${m.red}`;
+  } else {
+    metasDLP.innerHTML = '—';
+  }
+  
+  const acDLPDiv = document.getElementById('dlp-acao');
+  if (dlpResult.cat !== 'pendente') {
+    const cond = CONDUTA_DLP[dlpResult.cat];
+    acDLPDiv.innerHTML = `<div class="action-card"><div class="action-title">${cond.titulo}</div><div class="action-med">${cond.acao}</div>${cond.nota ? `<div class="action-note">${cond.nota}</div>` : ''}</div>`;
+  } else {
+    acDLPDiv.innerHTML = '<p style="color:var(--ink-faint);font-size:13px">—</p>';
+  }
+  
+  // === Outputs ===
+  document.getElementById('output-a').value = gerarA(s, pa, riscoHAS, dlpResult, decHAS);
+  document.getElementById('output-p-has').value = gerarPHAS(s, pa, riscoHAS, decHAS, acaoHAS);
+  document.getElementById('output-p-dlp').value = gerarPDLP(s, dlpResult);
+  
+  // Sanity checks + explica
+  renderSanityChecks(s);
+  renderExplica(s, pa, riscoHAS, dlpResult);
+}
+
+// ============================================================
+// MEDICAÇÕES
+// ============================================================
+function addMed() {
+  const id = 'med-' + Date.now() + '-' + Math.random().toString(36).substr(2,5);
+  medRows.push({ id, princ:'', dose:null });
+  renderMedList();
+}
+function removeMed(id) { medRows = medRows.filter(m => m.id !== id); renderMedList(); recompute(); }
+function updateMed(id, field, value) {
+  const m = medRows.find(r => r.id === id);
+  if (!m) return;
+  if (field === 'princ') { m.princ = value; if (value && CATALOGO[value]) m.dose = CATALOGO[value].semanaInicio; renderMedList(); }
+  else if (field === 'dose') { m.dose = +value || null; }
+  recompute();
+}
+function renderMedList() {
+  const list = document.getElementById('med-list');
+  list.innerHTML = '';
+  medRows.forEach(m => {
+    const row = document.createElement('div');
+    row.className = 'med-row';
+    let options = '<option value="">— escolha —</option>';
+    Object.entries(CATALOGO).forEach(([k,v]) => {
+      options += `<option value="${k}" ${m.princ===k?'selected':''}>${v.nome} ${v.apresent}${v.fp?' · FP':''}</option>`;
+    });
+    const info = m.princ ? CATALOGO[m.princ] : null;
+    row.innerHTML = `<select onchange="updateMed('${m.id}','princ',this.value)">${options}</select><input type="number" placeholder="dose total/dia" value="${m.dose||''}" min="0" onchange="updateMed('${m.id}','dose',this.value)"><span style="font-size:11.5px;color:var(--ink-faint);font-family:var(--font-mono)">${info?info.posologia:''}</span><button class="btn-remove" onclick="removeMed('${m.id}')" title="Remover">×</button>`;
+    list.appendChild(row);
+  });
+}
+
+// ============================================================
+// UI HELPERS
+// ============================================================
+function toggleDM() { document.getElementById('dm-detail').classList.toggle('hidden', !document.getElementById('cond-dm').checked); }
+function toggleDRC() { document.getElementById('drc-detail').classList.toggle('hidden', !document.getElementById('cond-drc').checked); }
+function toggleGest() { /* removed */ }
+
+function atualizarRenal() {
+  const tfge = parseFloat(document.getElementById('tfge').value);
+  const uacr = parseFloat(document.getElementById('uacr').value);
+  document.querySelectorAll('.renal-cell.selected').forEach(c => c.classList.remove('selected'));
+  if (isNaN(tfge) || isNaN(uacr)) return;
+  const g = tfge >= 90 ? '1' : tfge >= 60 ? '2' : tfge >= 45 ? '3a' : tfge >= 30 ? '3b' : '4';
+  const alb = uacr < 30 ? '0' : uacr < 300 ? '1' : '2';
+  const cell = document.querySelector(`.renal-cell[data-g="${g}"][data-alb="${alb}"]`);
+  if (cell) cell.classList.add('selected');
+}
+
+function resetForm() {
+  document.querySelectorAll('input[type="number"], input[type="text"]').forEach(i => i.value = '');
+  document.querySelectorAll('input[type="checkbox"]').forEach(i => i.checked = false);
+  document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+  document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+  document.getElementById('smk-n').checked = true;
+  document.querySelectorAll('.renal-cell.selected').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.auto-ticked').forEach(c => c.classList.remove('auto-ticked'));
+  _autoTicked = { fragil:false, idade65:false };
+  medRows = [];
+  renderMedList();
+  toggleDM(); toggleDRC();
+  recompute();
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.output-block').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.output-block').forEach(b => {
+    if (b.dataset.tab.split(' ').includes(tab)) b.classList.add('active');
+  });
+}
+
+function copiar(elementId, msg) {
+  const el = document.getElementById(elementId);
+  const text = (el.value !== undefined ? el.value : el.textContent);
+  if (text === '—' || !text.trim()) { showToast('Preencha os dados primeiro'); return; }
+  navigator.clipboard.writeText(text).then(() => showToast(msg)).catch(() => {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta); showToast(msg);
+  });
+}
+
+function copiarTudo() {
+  const a = document.getElementById('output-a').value;
+  const pHas = document.getElementById('output-p-has').value;
+  const pDlp = document.getElementById('output-p-dlp').value;
+  let combinado = '';
+  if (a && a !== '—') combinado += '#A\n' + a + '\n\n';
+  if (pHas && pHas !== '—') combinado += '#P · Hipertensão\n' + pHas + '\n\n';
+  if (pDlp && pDlp !== '—') combinado += '#P · Dislipidemia\n' + pDlp;
+  if (!combinado) { showToast('Preencha os dados primeiro'); return; }
+  navigator.clipboard.writeText(combinado.trim()).then(() => showToast('Copiado bloco unificado')).catch(() => {
+    const ta = document.createElement('textarea'); ta.value = combinado.trim(); document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta); showToast('Copiado bloco unificado');
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 2200);
+}
+
+// ============================================================
+// MODO SIMPLES / AVANÇADO
+// ============================================================
+function toggleModo() {
+  const body = document.body;
+  const btn = document.getElementById('btn-modo');
+  body.classList.toggle('modo-simples');
+  if (body.classList.contains('modo-simples')) {
+    btn.textContent = '⚙ Modo: simples';
+    // Aviso se há checkboxes marcados em seções escondidas
+    const ocultos = document.querySelectorAll('.seccao-avancada input[type="checkbox"]:checked').length;
+    if (ocultos > 0) showToast(`Atenção: ${ocultos} ${ocultos===1?'item está marcado':'itens estão marcados'} em seções ocultas`);
+  } else {
+    btn.textContent = '⚙ Modo: avançado';
+  }
+}
+
+// ============================================================
+// ENTER avança para próximo campo
+// ============================================================
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+  if (e.target.tagName === 'TEXTAREA') return; // textarea quer Enter literal
+  if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT') return;
+  if (e.target.type === 'checkbox' || e.target.type === 'radio') return;
+  e.preventDefault();
+  const focaveis = Array.from(document.querySelectorAll('input[type="number"], input[type="text"], select'))
+                       .filter(el => el.offsetParent !== null); // visíveis
+  const idx = focaveis.indexOf(e.target);
+  if (idx >= 0 && idx < focaveis.length - 1) focaveis[idx + 1].focus();
+});
+
+// init
+document.body.classList.add('modo-simples');
+renderMedList();
+recompute();
+</script>
+</body>
+</html>
